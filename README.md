@@ -1,1 +1,1 @@
-# 台北科技大學電資一程式設計
+# NTUT computer graphic laboratory slide system in "slide mode"
