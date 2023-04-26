@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=1900">
+  <title>o21-2分數四則運算</title>
+  <style>
+    html,
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+  </style>
+  <link rel="stylesheet" href="vendor/reveal/reset.css">
+  <link rel="stylesheet" href="vendor/reveal/reveal.css">
+  <link rel="stylesheet" href="vendor/reveal/theme/sky.css">
+
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="vendor/reveal/plugin/highlight/zenburn.css"><!--edit-->
+  <!-- Pollyfill script -->
+  <script src="https://unpkg.com/core-js-bundle@3.6.1/minified.js"></script>
+  <!-- Live2DCubismCore script -->
+  <script src="./dist/live2dcubismcore.js"></script>
+  <!-- Build script -->
+  <script src="./dist/bundle.js"></script>
+  <style>
+    ul, ol{
+      list-style: none;
+      margin-left: 0;
+    }
+    .reveal {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    #pageIndex{
+      position: absolute;
+      right: 24px;
+      bottom: 24px;
+      background: #000;
+      color: #fff;
+      font-size: 26px;
+    }
+    .controls{
+      bottom: 24px !important;
+    }
+    table{
+      font-size: 24px !important;
+      border-style: double !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <!--
+         data-no: 老師網頁的cubism人物編號(從0開始，網頁上的編號-1)
+         data-positionx: cubism人物水平位移範圍(建議-1 ~ 0.9)
+         data-positiony: cubism人物垂直位移範圍(建議-0.9~0.4)
+         data-scale: cubism人物縮放(建議1~2之間的小數值，最大極限是3)
+         data-motionno: cubism人物指定動作編號(從0開始，請參閱model3.json檔案的ALL MOTION GROUP)
+      -->
+
+      <!--Q1-->
+      <section>
+        <h3 style="text-align: left;">o21-2 分數四則運算</h3>
+        <section
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <p style="font-size: 24px; text-align: left;">計算兩個分數四則運算 +, -, *, /。</p>
+          <table style="padding: 0px; width: 1100px;">
+            <tr>
+              <td>輸入說明</td>
+              <td>輸出說明</td>
+            </tr>
+            <tr>
+              <td>
+                1. 輸入 4 的倍數行。<br>
+                2. 第 1, 2 行各代表一個分數。<br>
+                3. 第 3 行 是 +-*/ 符號。<br>
+                4. 第 4 行 y 繼續運算、n 停止執行。<br>
+              </td>
+              <td>
+                1. 輸出計算結果；<br>
+                2. 若輸入分數的分母為 0，則輸出 ERROR。<br>
+                3. 結果分數須化為最簡分數。<br>
+                4. 若結果大於 1，化為整數與真分數，真分數部分要加括號，如(7/6)輸出 1(1/6)。<br>
+                5. 負數結果的輸出，負號在最前面。<br>
+                6. 若結果為 0，輸出 0。<br>
+
+              </td>
+            </tr>
+          </table>
+        </section>
+      </section>
+      <section>
+          <h3>Input/Output</h3>
+          <section data-auto-animate
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+            <img src="img/ch3/001.png">
+          </section>        
+          <section data-auto-animate
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+            <img src="img/ch3/002.png">
+          </section> 
+          <section data-auto-animate
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+            <img src="img/ch3/003.png">
+          </section> 
+          <section data-auto-animate
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+            <img src="img/ch3/004.png">
+          </section> 
+      </section>
+      
+      <section>
+        <h3>hints</h3>
+        <section data-auto-animate
+          data-no="17" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <pre><code data-trim data-noescape>
+            #include &lt;stdio.h&gt;
+            
+            int main(){
+
+              // 輸入：輸入兩個分數
+              // 輸入：輸入運算子、程式是否結束(y/n)
+              // 判斷運算子(+-*/)
+              // 加減：先通分後計算
+              // 乘除：直接計算
+              // 約分（輾轉相除法求最大公因數）
+              // 進行輸出的判斷（直接輸出/假分數/ERROR/整數）
+              // 依照先前第4行輸入的值判斷是否繼續執行
+              
+              return 0;
+            }
+          </code></pre> 
+        </section>    
+        <section data-auto-animate
+          data-no="17" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <pre><code data-trim data-noescape>
+            // char(字元) & string(字串)
+
+            char ch;
+            scanf("%c", &ch);  // 輸入字元
+
+            char s[80];
+            scanf("%s", s);  // 輸入字串
+          </code></pre> 
+        </section>    
+        <section data-auto-animate
+          data-no="17" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <pre><code data-trim data-noescape>
+            // 輾轉相除法尋找最大公因數
+            int GCD(int a, int b){
+              int temp;
+              while(b != 0){
+                temp = b;
+                b = a%b;
+                a = temp;
+              }
+              return a;
+            }
+          </code></pre>
+          <pre><code data-trim data-noescape>
+            a   b
+            18  12
+            12  6
+            6   0
+          </code></pre>
+        </section>
+      </section>
+	  <section>　<!--data-no=8: ひより，代表解答-->
+		<h4>輾轉相除法解說</h4>
+		<section data-auto-animate
+          data-no="8" 		
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <img src="img/ch3/GCD範例一.jpg">
+        </section>
+		<section data-auto-animate
+          data-no="8" 		
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+		  <img src="img/ch3/GCD範例二.jpg">
+        </section>
+
+	  </section>
+	  <section>
+		<h3>解答</h3>
+		<section data-auto-animate
+          data-no="8" 		
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+		  <font size=6>header file</font>
+          <pre><code data-trim data-noescape>
+			#include &lt;stdio.h&gt;
+			#include &lt;stdlib.h&gt;
+          </code></pre>
+        </section>
+		<section data-auto-animate
+          data-no="8" 		
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+		  <font size=6>副程式</font>
+          <pre><code data-trim data-noescape>
+			int getGCD(int num1,int num2){
+				//by輾轉相除法
+				//num1>num2
+				int tmp;
+				while (num2!=0){
+					tmp=num2;
+					num2=num1%num2;
+					num1=tmp;
+				}
+				return num1;
+			}
+          </code></pre>
+        </section>
+	  </section>
+	  <section>
+		<h3>解答</h3>
+		<section data-auto-animate
+          data-no="8" 		
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+		  <font size=6>主程式變數宣告</font>
+          <pre><code data-trim data-noescape>
+			int main(){ 
+				//宣告要用的變數
+				//a1,a2:第一個分數的分子,分母；b1,b2:第二個分數的分子,分母
+				int a1,a2,b1,b2,sign,c,d,e,gcd;    
+				char operator,stat;    //stat=>y or n(continue or exit)
+
+				/*處理輸入和計算...*/
+
+				return 0;
+			}
+          </code></pre>
+        </section>
+		<section data-auto-animate
+          data-no="8" 		
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+		  <font size=6>處理輸入和計算放入do-while迴圈</font>
+          <pre><code data-trim data-noescape>
+			do{
+				/*處理輸入*/
+				/*兩個分數計算*/
+				/*輸出*/
+			} while(stat=='y'); //繼續下一組分數四則運算
+          </code></pre>
+        </section>
+		<section data-auto-animate
+          data-no="8" 		
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+		  <font size=6>處理輸入</font>
+          <pre><code data-trim data-noescape>
+			//輸入：
+			//第一、二行讀入兩個分數
+			scanf("%d/%d\n%d/%d\n",&a1,&a2,&b1,&b2);
+			//第三行讀入運算子、第四行讀入是否還有資料
+			scanf("%c\n%c",&operator,&stat);
+			//判別分母是否有0，有的話輸出ERROR
+			if (a2==0 || b2==0){
+				printf("ERROR\n");
+				continue;
+			}
+          </code></pre>
+        </section>
+		<section data-auto-animate
+          data-no="8" 		
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+		  <font size=6>加、減計算</font>
+          <pre><code data-trim data-noescape>
+			//加、減需通分(利用最大公因數求最小公倍數)
+			//需考慮負號(負號跟著分子，例如：-3/4會被拆成分子-3分母4)
+			if (operator=='+' || operator=='-'){
+				//a,b的LCM=(a/GCD)*(b/GCD)*LCM=a*b/GCD；lcm也是通分後的分母d
+				d=a2*b2/getGCD(a2,b2);    
+				//舉例：2/3+3/4=(2*(12/3)+3*(12/4))/12
+				if (operator=='+')
+					c=a1*(d/a2)+b1*(d/b2);  //新的分子(By加法)
+				else
+					c=a1*(d/a2)-b1*(d/b2);  //新的分子(By減法)
+				if (c>=0)
+					sign=1;
+				else{
+					sign=-1;
+					c=-c;
+				}
+			}
+          </code></pre>
+        </section>
+		<section data-auto-animate
+          data-no="8" 		
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+		  <font size=6>乘、除計算</font>
+          <pre><code data-trim data-noescape>
+			else{   //運算子為*或/(這裡不考慮非法測資)
+				sign=a1*b1>=0?1:-1;
+				a1=abs(a1); //將分子都轉換為正數計算
+				b1=abs(b1);
+				if (operator=='*'){
+					c=a1*b1;    //c:新分子(約分前)
+					d=a2*b2;    //d:新分母(約分前)
+				}
+				else{    //除法: 乘以倒數
+					c=a1*b2;
+					d=a2*b1;
+					if (d==0){   //分母為0
+						printf("ERROR\n");
+						continue;
+					}
+				}
+			}
+          </code></pre>
+        </section>
+		<section data-auto-animate
+		data-no="8" 		
+		data-positionx="0.8" 
+		data-positiony="0.03" 
+		data-scale="1" 
+		data-motionno="0">
+		<font size=6>約分</font>
+		<pre><code data-trim data-noescape>
+			//約分，分子分母同除GCD
+			gcd=getGCD(c,d);
+			c/=gcd; 
+			d/=gcd; 
+		</code></pre>
+	  </section>
+		<section data-auto-animate
+		data-no="8" 		
+		data-positionx="0.8" 
+		data-positiony="0.03" 
+		data-scale="1" 
+		data-motionno="0">
+		<font size=6>輸出</font>
+		<pre><code data-trim data-noescape>
+			//輸出
+			if (c%d==0){   //整數
+				printf("%d\n",sign*(c/d));
+			}
+			else if (c>d){ //如果分子比分母大(假分數)，須轉為帶分數
+				e=c/d;  //整數除法，留下商，作為整數部分
+				c%=d;       //除完餘下的部分為新的分子
+				printf("%d(%d/%d)\n",sign*e,c,d);   //考慮正負號
+			}
+			else{    //真分數
+				printf("%d/%d\n",sign*c,d);  //分子部分考慮正負號   
+			}
+		</code></pre>
+	  </section>
+	  </section>
+    </div>
+  </div>
+  <div id="pageIndex"></div>
+  <!-- reveal.js-->
+  <script src="vendor/reveal/reveal.js"></script>
+  <!--plugin-->
+  <script src="vendor/reveal/plugin/math/math.js"></script>
+  <script src="vendor/reveal/plugin/search/search.js"></script>
+  <script src="vendor/reveal/plugin/zoom/zoom.js"></script>
+
+  <script src="vendor/reveal/plugin/notes/notes.js"></script>
+  <script src="vendor/reveal/plugin/markdown/markdown.js"></script>
+  <script src="vendor/reveal/plugin/highlight/highlight.js"></script>
+  <script src="main-ppt.js"></script>
+</body>
+
+</html>
