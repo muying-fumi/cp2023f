@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=1900">
+  <title>o21-3以陣列實做長浮點小數的運算</title>
+  <style>
+    html,
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+  </style>
+  <link rel="stylesheet" href="vendor/reveal/reset.css">
+  <link rel="stylesheet" href="vendor/reveal/reveal.css">
+  <link rel="stylesheet" href="vendor/reveal/theme/sky.css">
+
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="vendor/reveal/plugin/highlight/zenburn.css"><!--edit-->
+  <!-- Pollyfill script -->
+  <script src="https://unpkg.com/core-js-bundle@3.6.1/minified.js"></script>
+  <!-- Live2DCubismCore script -->
+  <script src="./dist/live2dcubismcore.js"></script>
+  <!-- Build script -->
+  <script src="./dist/bundle.js"></script>
+  <style>
+    ul, ol{
+      list-style: none;
+      margin-left: 0;
+    }
+    .reveal {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    #pageIndex{
+      position: absolute;
+      right: 24px;
+      bottom: 24px;
+      background: #000;
+      color: #fff;
+      font-size: 26px;
+    }
+    .controls{
+      bottom: 24px !important;
+    }
+    table{
+      font-size: 24px !important;
+      border-style: double !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <!--
+         data-no: 老師網頁的cubism人物編號(從0開始，網頁上的編號-1)
+         data-positionx: cubism人物水平位移範圍(建議-1 ~ 0.9)
+         data-positiony: cubism人物垂直位移範圍(建議-0.9~0.4)
+         data-scale: cubism人物縮放(建議1~2之間的小數值，最大極限是3)
+         data-motionno: cubism人物指定動作編號(從0開始，請參閱model3.json檔案的ALL MOTION GROUP)
+      -->
+
+      <section>
+        <h3 style="text-align: left;">O21-3</h3>
+        <section
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <p style="font-size: 24px; text-align: left;">
+            以陣列實做長浮點小數的運算。<br>
+            將長浮點小數分成整數與小數兩個部分儲存於兩個一維陣列，計算並輸出兩數的相加、相減、相乘，輸出的兩個部分長度最大精確各為 60 位。
+          </p>
+          <br>
+          <table style="padding: 0px; width: 1100px;">
+            <tr>
+              <td>輸入說明</td>
+              <td>輸出說明</td>
+            </tr>
+            <tr>
+              <td>
+                輸入2行，代表 2 個浮點小數。
+              </td>
+              <td>
+                1. 輸出 3 行，分別為兩數相加、相減、相乘結果。
+              </td>
+            </tr>
+          </table>
+        </section>
+      </section>
+      <section>
+          <h3>Input/Output</h3>
+          <section data-auto-animate
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+            <img src="img/ch7/001.png">
+          </section>        
+          <section data-auto-animate
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+            <img src="img/ch7/002.png">
+          </section> 
+          <section data-auto-animate
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+            <img src="img/ch7/003.png">
+          </section> 
+          <section data-auto-animate
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+            <img src="img/ch7/004.png">
+          </section> 
+      </section>
+      <section>
+        <h3>hints</h3>
+        <section data-auto-animate
+          data-no="17" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <pre><code data-trim data-noescape>
+            #include &lt;stdio.h&gt;
+            
+            int main(){
+
+              // 輸入第1個小數（字串）
+              // 輸入第2個小數（字串）
+              // 將字串分割成整數、小數兩個部分
+              // 分別進行相加、相減、相乘，並輸出計算結果
+
+              // 題目要求要使用陣列儲存
+              
+              return 0;
+            }
+          </code></pre> 
+        </section>    
+        <section data-auto-animate
+          data-no="17" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <pre><code data-trim data-noescape>
+            #include &lt;stdio.h&gt;
+            #include &lt;string.h&gt;
+
+            int main(){   // 字串分割
+              char str[] = "www.google.com";
+              const char* d = ".";
+              char *p;
+              p = strtok(str, d);
+              
+              while (p != NULL){
+                printf("%s\n", p);
+                p = strtok(NULL, d);		   
+              }
+              return 0;
+            }
+          </code></pre> 
+          <pre><code data-trim data-noescape>
+            // 執行結果
+            www
+            google
+            com
+          </code></pre>
+        </section>    
+      </section>
+      <section>
+        <h3>解答</h3>
+        <font size=5>header file && 常數定義 && typedef</font>
+        <section data-auto-animate
+          data-no="8" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <pre><code data-trim data-noescape>
+            #include &lt;stdio.h&gt;
+            #include &lt;string.h&gt;
+
+            #define MID_POS 60
+            #define LAST_POS 120
+
+            typedef struct LongNumAry{
+              int digits[LAST_POS+1]; //digits[0]為符號位，0代表正非0代表負
+            } LongNum;
+          </code></pre> 
+        </section>    
+      </section>
+      <section>
+        <h3>解答</h3>
+        <font size=5>取得相反數的副程式</font>
+        <section data-auto-animate
+          data-no="8" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <pre><code data-trim data-noescape>
+            //正變負、負變正
+            void negate(LongNum *ln){  
+              //取九補數+1
+              int i,carry,n;
+              carry=1;  //九補數+"1"，視為最低位也有進位
+              for (i=LAST_POS;i>=0;i--){ 
+                n=9-ln->digits[i]+carry;
+                if (n>9){
+                  n-=10;
+                  carry=1;
+                }
+                else
+                  carry=0;
+                ln->digits[i]=n;
+              }
+            }
+          </code></pre> 
+        </section>    
+      </section>
+      <section>
+        <h3>解答</h3>
+        <font size=5>字串轉數字陣列</font>
+        <section data-auto-animate
+          data-no="8" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <pre><code data-trim data-noescape data-line-numbers='1-4|6-19|21-31'>
+            //將輸入的字串轉為數字陣列
+            //ln->digits[0]為符號(0為正、非0為負)
+            //ln->digits[1..60]為整數、ln->digits[61..120]為小數
+            //不儲存小數點
+            void fillNum(char *c, LongNum *ln){
+              int i,negative,fillTo;
+              char *p;
+
+              memset(ln->digits,0,sizeof(LongNum));
+              if (*c=='-'){
+                negative=1;
+                c++;
+              }
+              else
+                negative=0;
+
+              p=strchr(c,'.');  //找到小數點的位置
+              if (p==NULL) //沒有小數點，整數
+                p=c+strlen(c);  //相當於小數點在最右位
+              
+              //假設1234.56，p指到小數點的位置(索引0開始，第4位)
+              //1填入整數陣列時應填在索引值為57的位置
+              //57=60(MID_POS)-4(小數點位置和1的距離)+1
+              fillTo=MID_POS-(p-c)+1;
+              while (*c && fillTo&lt;=LAST_POS){
+                if (c!=p) //不儲存小數點
+                  ln->digits[fillTo++]=*c-'0';
+                c++;
+              }
+              if (negative)
+                negate(ln);
+            }
+          </code></pre> 
+        </section>    
+      </section>
+      <section>
+        <h3>解答</h3>
+        <font size=5>數字陣列轉字串</font>
+        <section data-auto-animate
+          data-no="8" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <pre><code data-trim data-noescape data-line-numbers='1-7|9-20|22-38|39-41'>
+            void fillStr(LongNum *ln, char *buffer){
+              int negative,i,n;
+              negative=(ln->digits[0]!=0);
+              if (negative){ 
+                *buffer++='-';
+                negate(ln); //後面轉為正數輸出
+              }
+
+              i=1;
+              n=0; //判斷已經轉換幾位數了
+              while (i&lt;=MID_POS){ //處理整數
+                if (ln->digits[i]==0 && n==0){
+                  i++;
+                  continue;
+                }
+                *buffer++=ln->digits[i++]+'0';
+                n++;
+              }
+              if (n==0) //整數部分全為0
+                *buffer++='0';
+            
+              //處理小數部分
+              n=0;
+              i=LAST_POS;
+              while (i>MID_POS){
+                if (ln->digits[i]==0 && n==0){
+                  i--;
+                  continue;
+                }
+                n++;
+                i--;
+              }
+              if (n>0){ //有小數部分
+                *buffer++='.';
+                for (i=0;i&lt;n;i++){
+                  *buffer++=ln->digits[i+MID_POS+1]+'0';
+                }
+              }
+              *buffer++='\0'; //字串終結
+              if (negative)
+                negate(ln);  //轉回負數
+            }
+          </code></pre> 
+        </section>    
+      </section>
+      <section>
+        <h3>解答</h3>
+        <font size=5>加法</font>
+        <section data-auto-animate
+          data-no="8" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <pre><code data-trim data-noescape data-line-numbers>
+            void add(LongNum *ln1, LongNum *ln2, LongNum *rtn){
+              int carry,i,n;
+              carry=0;
+              for (i=LAST_POS;i>=0;i--){
+                n=ln1->digits[i]+ln2->digits[i]+carry;
+                if (n>9){
+                  n-=10;
+                  carry=1;
+                }
+                else
+                  carry=0;
+                rtn->digits[i]=n;
+              }
+            }
+          </code></pre> 
+        </section>    
+      </section>
+      <section>
+        <h3>解答</h3>
+        <font size=5>乘法</font>
+        <section data-auto-animate
+          data-no="8" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <pre><code data-trim data-noescape data-line-numbers='1-13|15-38|40-58'>
+            void multiple(LongNum* ln1, LongNum* ln2, LongNum* rtn){
+              int negative1,negative2,i,j,carry,n,m;
+              negative1=ln1->digits[0]!=0;
+              negative2=ln2->digits[0]!=0;
+            
+              for (i=0;i&lt;=LAST_POS;i++)  //將結果先填0
+                rtn->digits[i]=0;
+            
+              //一律先轉為正數再計算
+              if (negative1)
+                negate(ln1);
+              if (negative2)
+                negate(ln2);
+            
+              //要乘的兩個數，分別以i,j代表索引值
+              //i, j=0: 符號位
+              //i, j=1 to LAST_POS 且 num1[i]*num2[j]要加到第[i+j-MID_POS]位
+              //1&lt;=i+j-MID_POS&lt;=LAST_POS
+              //max(MID_POS-i,1)&lt;=j&lt;=min(LAST_POS+MID_POS-i,LAST_POS)
+              for (i=LAST_POS;i>=1;i--){
+                if (ln1->digits[i]==0)
+                  continue;
+                //取j的最小值
+                n=MID_POS-i;
+                if (n&lt;1)
+                  n=1;
+                //取j的最大值
+                m=LAST_POS+MID_POS-i;
+                if(m>LAST_POS)
+                  m=LAST_POS;
+            
+                //乘法計算：
+                for (j=m;j>=n;j--){
+                  if (ln2->digits[j]==0)
+                    continue;
+                  rtn->digits[i+j-MID_POS]+=ln1->digits[i]*ln2->digits[j];
+                }
+              }
+            
+              //處理進位
+              carry=0;
+              for (i=LAST_POS;i>=1;i--){
+                rtn->digits[i]+=carry;
+                if (rtn->digits[i]>=10){
+                  carry=rtn->digits[i]/10;
+                  rtn->digits[i]%=10;
+                }
+                else
+                  carry=0;
+              }
+            
+              //若本來是負數，計算完將數值轉回原本的
+              if (negative1)
+                negate(ln1);
+              if (negative2)
+                negate(ln2);
+              if (negative1 ^ negative2) //結果為一正一負
+                negate(rtn);
+            }
+          </code></pre> 
+        </section>   
+      </section>
+      <section>
+        <h3>解答</h3>
+        <font size=5>主程式</font>
+        <section data-auto-animate
+          data-no="8" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <pre><code data-trim data-noescape data-line-numbers='1-9|11-25'>
+            int main(){
+              LongNum num1,num2,num3;
+              char s1[LAST_POS+1];
+              char s2[LAST_POS+1];
+              char buffer[LAST_POS+1];
+              scanf("%s",s1);
+              scanf("%s",s2);
+              fillNum(s1,&num1);
+              fillNum(s2,&num2);
+
+              //加
+              add(&num1,&num2,&num3);
+              fillStr(&num3,buffer);
+              printf("%s\n",buffer);
+              //減(加負值)
+              negate(&num2);
+              add(&num1,&num2,&num3);
+              negate(&num2);
+              fillStr(&num3,buffer);
+              printf("%s\n",buffer);
+              //乘
+              multiple(&num1,&num2,&num3);
+              fillStr(&num3,buffer);
+              printf("%s",buffer);
+              return 0;
+            }
+          </code></pre> 
+        </section>    
+      </section>
+    </div>
+  </div>
+  <div id="pageIndex"></div>
+  <!-- reveal.js-->
+  <script src="vendor/reveal/reveal.js"></script>
+  <!--plugin-->
+  <script src="vendor/reveal/plugin/math/math.js"></script>
+  <script src="vendor/reveal/plugin/search/search.js"></script>
+  <script src="vendor/reveal/plugin/zoom/zoom.js"></script>
+
+  <script src="vendor/reveal/plugin/notes/notes.js"></script>
+  <script src="vendor/reveal/plugin/markdown/markdown.js"></script>
+  <script src="vendor/reveal/plugin/highlight/highlight.js"></script>
+  <script src="main-ppt.js"></script>
+</body>
+
+</html>
