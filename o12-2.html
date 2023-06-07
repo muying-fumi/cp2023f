@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=1900">
+  <title>o12-2魔法旅遊</title>
+  <style>
+    html,
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+  </style>
+  <link rel="stylesheet" href="vendor/reveal/reset.css">
+  <link rel="stylesheet" href="vendor/reveal/reveal.css">
+  <link rel="stylesheet" href="vendor/reveal/theme/sky.css">
+
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="vendor/reveal/plugin/highlight/zenburn.css"><!--edit-->
+  <!-- Pollyfill script -->
+  <script src="https://unpkg.com/core-js-bundle@3.6.1/minified.js"></script>
+  <!-- Live2DCubismCore script -->
+  <script src="./dist/live2dcubismcore.js"></script>
+  <!-- Build script -->
+  <script src="./dist/bundle.js"></script>
+  <style>
+    ul, ol{
+      list-style: none;
+      margin-left: 0;
+    }
+    .reveal {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    #pageIndex{
+      position: absolute;
+      right: 24px;
+      bottom: 24px;
+      background: #000;
+      color: #fff;
+      font-size: 26px;
+    }
+    .controls{
+      bottom: 24px !important;
+    }
+    table{
+      font-size: 24px !important;
+      border-style: double !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <!--
+         data-no: 老師網頁的cubism人物編號(從0開始，網頁上的編號-1)
+         data-positionx: cubism人物水平位移範圍(建議-1 ~ 0.9)
+         data-positiony: cubism人物垂直位移範圍(建議-0.9~0.4)
+         data-scale: cubism人物縮放(建議1~2之間的小數值，最大極限是3)
+         data-motionno: cubism人物指定動作編號(從0開始，請參閱model3.json檔案的ALL MOTION GROUP)
+      -->
+
+      <!--Q1-->
+      <section>
+        <h3 style="text-align: left;">o12-2 魔法旅遊</h3>
+        <section data-auto-animate
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <p style="font-size: 24px; text-align: left;">
+            BMI博士要到漫威星系的城市找蜘蛛人，某些城市間有S博士的魔法傳輸通道可走。請找出一條能從 X 城市到 Z 城市 的最短通道數的路徑。<br>
+          <p style="font-size: 24px; text-align: left; font-weight: bold;">
+            輸入說明</p>
+          <p style="font-size: 24px; text-align: left;">
+            1. 第一行 N, X, Z, Y，N 是傳輸通道數量，X 代表起始點，Z 代表終點，Y 代表中途必到點，若沒有 Y，則不考慮中途點。<br>
+            2.之後 N 行，每一行 A B，代表 A 城市與 B 城市間有魔法傳輸通道。<br></p>
+          <p style="font-size: 24px; text-align: left; font-weight: bold;">
+            輸出說明</p>
+          <p style="font-size: 24px; text-align: left;">
+            1. 找出 X 中途經過 Y 城市抵達 Z 的路徑，若存在，則輸出走過最少通道個數與最短路徑。<br>
+            2. 若不存在此路徑，輸出 NO。</p>
+        </section>
+      </section>
+      <section>
+          <h3>Input/Output</h3>
+          <section data-auto-animate
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+            <img src="img/ch11/001.png">
+          </section>        
+          <section data-auto-animate
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+            <img src="img/ch11/002.png">
+          </section> 
+          <section data-auto-animate
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+            <img src="img/ch11/003.png">
+          </section> 
+      </section>
+      <section>
+        <h3>hints</h3>
+        <section data-auto-animate
+          data-no="17" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <h4>Dijkstra algorithm</h4>
+          <img src="img/ch11/007.png" height="300px">
+          <img src="img/ch11/008.png" height="300px">
+          <img src="img/ch11/009.png" height="400px">
+        </section>
+        <section data-auto-animate
+          data-no="17" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <pre><code data-trim data-noescape>
+            #include &lt;stdio.h&gt;
+            int main(){
+              //Dijkstra algorithm
+              //途中必經過某一點
+              //將問題拆成兩部分：
+              //起點到必經點、必經點到終點
+              return 0;
+            }
+          </code></pre> 
+        </section>    
+      </section>
+      <section>
+        <h3>解答</h3>
+        <section data-auto-animate
+          data-no="8" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <font size=5>header file&常數定義&struct定義</font>
+          <pre><code data-trim data-noescape data-line-numbers>
+            #include &lt;stdio.h&gt;
+            #include &lt;stdlib.h&gt;
+
+            #define MAX_PATH_CNT 100
+            
+            typedef struct Path_struct{
+              int path[MAX_PATH_CNT][MAX_PATH_CNT];//紀錄原始路徑
+              int visit[MAX_PATH_CNT];  //是否已被加入最短路徑樹
+              int parent[MAX_PATH_CNT]; //紀錄路徑的上一步是哪個城市
+              int last_pt;              //最後一個城市編號
+            } Path_s;
+          </code></pre> 
+        </section>
+      </section>
+      <section>
+        <h3>解答</h3>
+        <section data-auto-animate
+          data-no="8" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <font size=5>dijkstra演算法，找最短路徑</font>
+          <pre><code data-trim data-noescape data-line-numbers="1-4|6-16|18-41">
+            //找出最短路徑
+            void dijkstra(Path_s *ps,int start){
+              int distance[ps->last_pt];//從起點開始到各城市的距離
+              int i,j,idx,min_dist,next,dist;
+
+              //初始化
+              for (i=0;i&lt;=ps->last_pt;i++){
+                distance[i]=ps->path[start][i];
+                ps->visit[i]=0;
+                if (distance[i]==1) //代表相鄰
+                  ps->parent[i]=start;
+                else
+                  ps->parent[i]=0; //0為未確認父節點
+              }
+              ps->visit[start]=1; //將起點設為已拜訪，加入最短路徑樹
+              ps->parent[start]=-1; //起點沒有父節點
+
+              for (i=0;i&lt;ps->last_pt;i++){
+                //尋找一個目前不在最短路徑樹上
+                //且離起點最近的點
+                min_dist=1e9;
+                idx=-1;  //紀錄要找的點
+                for (j=0;j&lt;=ps->last_pt;j++){
+                  if (!ps->visit[j] && distance[j]&lt;min_dist){
+                    min_dist=distance[j];
+                    idx=j;  //暫時將該節點視為要加入最短路徑樹的點
+                  }
+                }
+                if (idx==-1) //已完成最短路徑樹
+                  break;
+                
+                ps->visit[idx]=1; //將該點加入最短路徑樹
+                //從起點到idx，再到其他點，查看是否能更新起點到其他點的最短路徑
+                for (next=0;next&lt;=ps->last_pt;next++){
+                  dist=distance[idx]+ps->path[idx][next]; //從起點到idx，再到其他點
+                  if (!ps->visit[next] && dist&lt;distance[next]){
+                    distance[next]=dist;
+                    ps->parent[next]=idx;
+                  }
+                }
+              }
+            }
+
+          </code></pre> 
+        </section>
+      </section>
+      <section>
+        <h3>解答</h3>
+        <section data-auto-animate
+          data-no="8" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <font size=5>findPath副程式</font>
+          <pre><code data-trim data-noescape data-line-numbers>
+            //透過ps->parent找出最短路徑走法
+            void findPath(Path_s *ps, int current, int *p, int *p_size){
+              if (ps->parent[current]==-1){ //回溯到起點
+                p[(*p_size)++]=current;
+                return;
+              }
+              findPath(ps,ps->parent[current],p,p_size);
+              p[(*p_size)++]=current; //從起點開始，依序紀錄路徑
+            }
+         </code></pre> 
+        </section>        
+      </section>
+      <section>
+        <h3>解答</h3>
+        <section data-auto-animate
+          data-no="8" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <font size=5>主程式</font>
+          <pre><code data-trim data-noescape data-line-numbers="1-6|8-16|18-33|35-48|49-74|75-76">
+            int main(){
+              //宣告變數
+              Path_s *ps;
+              char buffer;
+              int i, j, N, X, Z, Y, from, to, p_size;
+              int p[MAX_PATH_CNT]; //儲存最終路徑
+              
+              //配置記憶體&初始化
+              ps=(Path_s *)malloc(sizeof(Path_s));
+              for (i=0;i&lt;MAX_PATH_CNT;i++){
+                for (j=0;j&lt;MAX_PATH_CNT;j++)
+                  if (i==j)
+                    ps->path[i][j]=0; 
+                  else
+                    ps->path[i][j]=1e9; //預設此路不通
+              }
+              
+              //處理輸入
+              Y=-1; //預設無中途點
+              scanf("%d %d %d%c",&N,&X,&Z,&buffer);
+              if (buffer==' ') //有中途點
+                scanf("%d",&Y);
+              
+              ps->last_pt=-1; //最後一個城市節點預設為-1
+              while (N--){  
+                scanf("%d %d",&from,&to);
+                ps->path[from][to]=1;
+                ps->path[to][from]=1;
+                if (ps->last_pt&lt;from)
+                  ps->last_pt=from;
+                if (ps->last_pt&lt;to)
+                  ps->last_pt=to;
+              }
+            
+              dijkstra(ps,X);  //從X開始走，找出最短路徑
+              if (Y==-1){ //起點(X)~終點(Z)  
+                if (!ps->visit[Z]){
+                  printf("NO");
+                  return 0;
+                }
+                //從Z往前面追溯，找出X~Z的最短路徑
+                p_size=0;
+                findPath(ps,Z,p,&p_size);
+                //輸出
+                printf("%d\n",p_size-1); 
+                for (i=0;i&lt;p_size;i++)
+                  printf("%d ",p[i]);
+              }
+              else{ 
+                //起點(X)~中途點(Y)
+                if (!ps->visit[Y]){ //不會到Y
+                  printf("NO");
+                  return 0;
+                }
+                p_size=0;
+                findPath(ps,Y,p,&p_size); //從Y開始追溯到X
+            
+                //中途點(Y)~終點(Z)
+                dijkstra(ps,Y); //從Y開始找最短路徑
+                if (!ps->visit[Z]){ //不會到Z
+                  printf("NO");
+                  return 0;
+                }
+            
+                findPath(ps,Z,p,&p_size); //從Z開始往前追溯到Y
+            
+                //輸出
+                printf("%d\n",p_size-2);//Y會重複(X~Y,Y~Z)，所以p_size-2
+                for (i=0;i&lt;p_size;i++){
+                  printf("%d ",p[i]);
+                  if (p[i]==Y)
+                    i++;
+                }
+              }
+              free(ps); //釋放先前配置給Path_s的記憶體
+              return 0;
+            }
+          </code></pre> 
+        </section>
+      </section>      
+    </div>
+  </div>
+  <div id="pageIndex"></div>
+  <!-- reveal.js-->
+  <script src="vendor/reveal/reveal.js"></script>
+  <!--plugin-->
+  <script src="vendor/reveal/plugin/math/math.js"></script>
+  <script src="vendor/reveal/plugin/search/search.js"></script>
+  <script src="vendor/reveal/plugin/zoom/zoom.js"></script>
+
+  <script src="vendor/reveal/plugin/notes/notes.js"></script>
+  <script src="vendor/reveal/plugin/markdown/markdown.js"></script>
+  <script src="vendor/reveal/plugin/highlight/highlight.js"></script>
+  <script src="main-ppt.js"></script>
+</body>
+
+</html>
