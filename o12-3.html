@@ -376,7 +376,7 @@
               p=strstr(sen_p->lines[i],old);
               while(p!=NULL){
                 src=p+strlen(old)+1;//src指向new的開始
-                memmove(p,src,strlen(src));//搬移長度為new開始到\0
+                memmove(p,src,strlen(src)+1);//搬移長度為new開始到\0
                 p=strstr(p,old);  //找下一個要刪除的old位置
               }
             }
