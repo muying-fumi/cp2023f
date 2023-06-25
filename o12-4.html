@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=1900">
+  <title>o12-4 課程教室排程</title>
+  <style>
+    html,
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+  </style>
+  <link rel="stylesheet" href="vendor/reveal/reset.css">
+  <link rel="stylesheet" href="vendor/reveal/reveal.css">
+  <link rel="stylesheet" href="vendor/reveal/theme/sky.css">
+
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="vendor/reveal/plugin/highlight/zenburn.css"><!--edit-->
+  <!-- Pollyfill script -->
+  <script src="https://unpkg.com/core-js-bundle@3.6.1/minified.js"></script>
+  <!-- Live2DCubismCore script -->
+  <script src="./dist/live2dcubismcore.js"></script>
+  <!-- Build script -->
+  <script src="./dist/bundle.js"></script>
+  <style>
+    ul, ol{
+      list-style: none;
+      margin-left: 0;
+    }
+    .reveal {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    #pageIndex{
+      position: absolute;
+      right: 24px;
+      bottom: 24px;
+      background: #000;
+      color: #fff;
+      font-size: 26px;
+    }
+    .controls{
+      bottom: 24px !important;
+    }
+    table{
+      font-size: 24px !important;
+      border-style: double !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <!--
+         data-no: 老師網頁的cubism人物編號(從0開始，網頁上的編號-1)
+         data-positionx: cubism人物水平位移範圍(建議-1 ~ 0.9)
+         data-positiony: cubism人物垂直位移範圍(建議-0.9~0.4)
+         data-scale: cubism人物縮放(建議1~2之間的小數值，最大極限是3)
+         data-motionno: cubism人物指定動作編號(從0開始，請參閱model3.json檔案的ALL MOTION GROUP)
+      -->
+
+      <!--Q1-->
+      <section>
+        <h3 style="text-align: left;">課程教室排程</h3>
+        <section data-auto-animate
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <p style="font-size: 24px; text-align: left;">
+            某大學有許多課程須要分配不同教室上課，教室 24 小時開放，每一個課程有不同的使用時間。由於課程眾多，可能發生時間衝突，教務處安排這些課程，優先選取時間上不衝突的課程安排教室。學校希望所有教室能做最有效的利用。教室有容納人數上限，課程有修課人數。<br>
+            說明：每堂課程須全程在某間教室上完，中途不得更改教室。
+          </p>
+        </section>
+        <section data-auto-animate
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <p style="font-size: 24px; text-align: left; font-weight: bold;">
+            輸入說明
+          </p>
+          <p style="font-size: 24px; text-align: left;">
+            1. 第一行輸入兩個整數 M, N，M 是教室數量，N 是課程數。<br>
+            2. 其後 M 行，每一行有 2 個正整數以空白隔開，代表教室編號與容量。<br>
+            3. 其後 N 行，每一行有 4個正整數以空白隔開，代表每一個課程的編號、人數、開始時間、結束時間。時間以 0 代 表凌晨 12 點，18 代表下午六點。例如： 1102 50 1 4 #課程 1102 有 50 人用 1 點-4 點共 3 小時。 2103 30 3 15 #課程 2103 有 50 人 用 3點-15 點共 12小時。<br>
+            4. 最後一行，正整數 b，b=0表示不考慮人數限制，b=1，表示要考慮人數限制。b=2，表示要考慮人數限制，且要輸出課程編號與教室編號。
+          </p>
+          <p style="font-size: 24px; text-align: left; font-weight: bold;">
+            輸出說明
+          </p>
+          <p style="font-size: 24px; text-align: left;">
+            1.計算安排到的所有課程，輸出能使用最高總時數。<br>
+            2.計算安排到的所有課程，輸出能使用的最多課程數。若 b=2，輸出課程編號與教室。<br>
+            3. 若有相同，取編號數小的優先輸出。
+          </p>
+        </section>
+      </section>
+      <section>
+          <h3>Input/Output</h3>
+          <section data-auto-animate
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+            <img src="img/ch15/001.png">
+          </section>        
+          <section data-auto-animate
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+            <img src="img/ch15/002.png">
+          </section> 
+      </section>
+      <section>
+        <section data-auto-animate
+          data-no="17" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <h3>hints</h3>
+          <pre><code data-trim data-noescape>
+            #include &lt;stdio.h&gt;
+            int main(){
+              // 輸入：M間教室 N個課程
+              // M行：教室編號 容量
+              // N行：課程編號 人數 開始時間 結束時間 (24時制)
+              if(b == 0){
+                // 不用考慮人數限制（只要看時間排）
+              }
+              else if(b == 1){
+                // 要考慮人數限制
+              }
+              else if(b == 2){
+                // 要考慮人數限制、要輸出課程編號與教室編號
+              }
+              return 0;
+            }
+          </code></pre> 
+        </section> 
+      </section>
+      <section>
+        <h3>解答</h3>
+        <section data-auto-animate
+          data-no="8" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <font size=5>header files & typedef</font>
+          <pre><code data-trim data-noescape data-line-numbers>
+            #include &lt;stdio.h&gt;
+            #include &lt;stdlib.h&gt;
+            #include &lt;string.h&gt;
+            
+            typedef struct Classroom{
+              int num;
+              int size;
+              int used[24];
+            } Classroom;
+            
+            typedef struct Course{
+              int num;
+              int people;
+              int start;
+              int end;
+              int room;  
+              int ans_room;
+            } Course;
+          </code></pre> 
+        </section> 
+      </section>
+      <section>
+        <h3>解答</h3>
+        <section data-auto-animate
+          data-no="8" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <font size=5>check_used 副程式</font>
+          <pre><code data-trim data-noescape data-line-numbers>
+            //檢查在該課程的所有時段內，該教室是否皆可用
+            int check_used(Classroom room, Course crs){ 
+              for (int i = crs.start; i &lt; crs.end; i++)
+                if (room.used[i])
+                  return 0;
+              return 1;
+            }
+          </code></pre> 
+        </section> 
+      </section>
+      <section>
+        <h3>解答</h3>
+        <section data-auto-animate
+          data-no="8" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <font size=5>排課副程式</font>
+          <pre><code data-trim data-noescape data-line-numbers="1-8|9-17|18-31">
+            void schedule(Classroom *room, Course *crs, int M, int N, int hours, int courses, int *max_hours, int *max_courses, int mode){
+              if (*max_hours &lt; hours){  //該排課情形能更新最大時數
+                *max_hours = hours;
+                *max_courses = courses;
+            
+                for (int i = 0; i &lt; N; i++) //更新每一門課的教室使用情形
+                  crs[i].ans_room = crs[i].room;  
+              }
+              //依序檢查每一門課程，並嘗試排課
+              for (int i = 0; i &lt; N; i++){ 
+                //只排還沒有教室的課程(已經排過的不重複排)
+                if (crs[i].room != 0)
+                  continue;
+                for (int j = 0; j &lt; M; j++){ //針對還沒排的課，檢查各教室
+                  //若該時段該教室已被使用，則不可排該教室
+                  if (!check_used(room[j], crs[i])) 
+                    continue;
+                  //若mode為0，不考慮教室容量；否則須人數&lt;教室容量
+                  if (mode == 0 || (crs[i].people &lt;= room[j].size)){ 
+                    crs[i].room = room[j].num;  //教室編號放入該課程目前排的課程
+                    //針對該教室以小時為單位標註使用情形(crs[i]這門課使用)
+                    for (int k = crs[i].start; k &lt; crs[i].end; k++)
+                      room[j].used[k] = crs[i].num;
+          
+                    //排完一門課，再排下一門
+                    schedule(room, crs, M, N, hours+crs[i].end-crs[i].start, courses+1, max_hours, max_courses, mode);
+                    //將該排課情形還原，嘗試將該課排下一間教室or排下一門課
+                    crs[i].room = 0;
+                    for (int k = crs[i].start; k &lt; crs[i].end; k++)
+                      room[j].used[k] = 0;
+                  }
+                }
+              }
+            }
+          </code></pre> 
+        </section> 
+      </section>
+      <section>
+        <h3>解答</h3>
+        <section data-auto-animate
+          data-no="8" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <font size=5>主程式</font>
+          <pre><code data-trim data-noescape data-line-numbers="1-22|24-41|43-54">
+            int main(){
+              //輸入&配置記憶體&初始化
+              int M, N, b;
+              scanf("%d %d", &M, &N);
+            
+              //根據教室數量動態配置記憶體
+              Classroom *room = (Classroom *)malloc(M * sizeof(Classroom));
+              for (int i = 0; i &lt; M; i++)
+                scanf("%d %d", &room[i].num, &room[i].size);
+              Course *crs = (Course *)malloc(N * sizeof(Course));
+              for (int i = 0; i &lt; N; i++)
+                scanf("%d %d %d %d", &crs[i].num, &crs[i].people, &crs[i].start, &crs[i].end);
+             
+              scanf("%d", &b); //模式：b=0不考慮容量；b=1考慮容量；b=2考慮容量且輸出課程編號和教室編號
+            
+              for (int i = 0; i &lt; M; i++) //初始化教室為皆未被使用
+                memset(room[i].used, 0, sizeof(room[i].used));
+            
+              for (int i = 0; i &lt; N; i++){
+                crs[i].room = 0;
+                crs[i].ans_room = 0;
+              }
+            
+              //開始排課
+              int max_hours = 0, max_courses = 0;
+              schedule(room, crs, M, N, 0, 0, &max_hours, &max_courses, b);
+                
+              //根據課程編號小到大來排序
+              int last = N, check = 0;
+              while (last > 1){
+                while (check &lt; last - 1){
+                  if (crs[check].num > crs[check + 1].num){
+                    Course tmp = crs[check];
+                    crs[check] = crs[check + 1];
+                    crs[check + 1] = tmp;
+                  }
+                  check++;
+                }
+                check = 0;
+                last--;
+              }
+              
+              //輸出
+              printf("max hours %d\nmax courses %d\n", max_hours, max_courses);
+              if (b == 2) //需再印出哪一門課對應哪間教室
+                for (int i = 0; i &lt; N; i++)
+                  if (crs[i].ans_room != 0)
+                    printf("%d %d\n", crs[i].num, crs[i].ans_room);
+            
+              //釋放先前配置的記憶體
+              free(room);
+              free(crs);
+            
+              return 0;
+            }
+          </code></pre> 
+        </section> 
+      </section>
+    </div>
+  </div>
+  <div id="pageIndex"></div>
+  <!-- reveal.js-->
+  <script src="vendor/reveal/reveal.js"></script>
+  <!--plugin-->
+  <script src="vendor/reveal/plugin/math/math.js"></script>
+  <script src="vendor/reveal/plugin/search/search.js"></script>
+  <script src="vendor/reveal/plugin/zoom/zoom.js"></script>
+
+  <script src="vendor/reveal/plugin/notes/notes.js"></script>
+  <script src="vendor/reveal/plugin/markdown/markdown.js"></script>
+  <script src="vendor/reveal/plugin/highlight/highlight.js"></script>
+  <script src="main-ppt.js"></script>
+</body>
+
+</html>
