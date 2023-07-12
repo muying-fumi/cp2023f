@@ -209,7 +209,7 @@
           <pre><code data-trim data-noescape data-line-numbers="1-4|6-16|18-41">
             //找出最短路徑
             void dijkstra(Path_s *ps,int start){
-              int distance[ps->last_pt];//從起點開始到各城市的距離
+              int distance[MAX_PATH_CNT];//從起點開始到各城市的距離
               int i,j,idx,min_dist,next,dist;
 
               //初始化
