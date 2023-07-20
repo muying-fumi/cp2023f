@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=1900">
+  <title>o22-6 賓果遊戲</title>
+  <style>
+    html,
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+  </style>
+  <link rel="stylesheet" href="vendor/reveal/reset.css">
+  <link rel="stylesheet" href="vendor/reveal/reveal.css">
+  <link rel="stylesheet" href="vendor/reveal/theme/sky.css">
+
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="vendor/reveal/plugin/highlight/zenburn.css"><!--edit-->
+  <!-- Pollyfill script -->
+  <script src="https://unpkg.com/core-js-bundle@3.6.1/minified.js"></script>
+  <!-- Live2DCubismCore script -->
+  <script src="./dist/live2dcubismcore.js"></script>
+  <!-- Build script -->
+  <script src="./dist/bundle.js"></script>
+  <style>
+    ul, ol{
+      list-style: none;
+      margin-left: 0;
+    }
+    .reveal {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    #pageIndex{
+      position: absolute;
+      right: 24px;
+      bottom: 24px;
+      background: #000;
+      color: #fff;
+      font-size: 26px;
+    }
+    .controls{
+      bottom: 24px !important;
+    }
+    table{
+      font-size: 24px !important;
+      border-style: double !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <!--
+         data-no: 老師網頁的cubism人物編號(從0開始，網頁上的編號-1)
+         data-positionx: cubism人物水平位移範圍(建議-1 ~ 0.9)
+         data-positiony: cubism人物垂直位移範圍(建議-0.9~0.4)
+         data-scale: cubism人物縮放(建議1~2之間的小數值，最大極限是3)
+         data-motionno: cubism人物指定動作編號(從0開始，請參閱model3.json檔案的ALL MOTION GROUP)
+      -->
+      <section>
+        <h3 style="text-align: left;">賓果遊戲 (進階題)</h3>
+        <section data-auto-animate
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <p style="font-size: 24px; text-align: left;">
+            A, B 兩位玩家玩賓果遊戲，每位玩家各自輸入一個 N×N的矩陣，數字從 1~N×N，<br>
+            假設 N=3<br>
+            接著從 1~N×N 的數字選擇 M 個數字，其中 1&lt;=M&lt;N×N。<br>
+            例如 M=4，四個數字是 6, 1, 7, 3。<br>
+            則 A, B 玩家的矩陣分別為：<br>
+          </p>
+          <img src="img/ch11/004.png">
+          <p style="font-size: 24px; text-align: left;">
+            輸入到 7時，B玩家先達成 1條連線，A玩家還沒連線，因此 B 玩家獲勝。
+          </p>
+        </section>
+        <section data-auto-animate
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <p style="font-size: 24px; text-align: left;">
+            判斷勝負：<br>
+            1. M 個數字依序出現在任一玩家矩陣中連成一條對角線、垂直線，或水平線，先連成線的玩家獲勝。<br>
+            2. 若兩位玩家同時連線，或都沒有連線，則平手。<br>
+          </p>
+          <p style="font-size: 24px; text-align: left; font-weight: bold;">
+            輸入說明
+          </p>
+          <p style="font-size: 24px; text-align: left;">
+            Line 1, 整數 N M<br>
+            Line 2, A 的 N×N 個數字<br>
+            Line 3, B 的 N×N 個數字<br>
+            Line 4, M 個數字
+          </p>
+          <p style="font-size: 24px; text-align: left; font-weight: bold;">
+            輸出說明
+          </p>
+          <p style="font-size: 24px; text-align: left;">
+            A玩家獲勝，輸出A Win<br>
+            B玩家獲勝，輸出B Win<br>
+            平手輸出 Tie
+          </p>
+        </section>
+      </section>
+      <section>
+        <h3>Input/Output</h3>
+        <section data-auto-animate
+        data-no="6" 
+        data-positionx="0.8" 
+        data-positiony="0.03" 
+        data-scale="1" 
+        data-motionno="0">
+          <img src="img/ch11/005.png">
+        </section>        
+        <section data-auto-animate
+        data-no="6" 
+        data-positionx="0.8" 
+        data-positiony="0.03" 
+        data-scale="1" 
+        data-motionno="0">
+          <img src="img/ch11/006.png">
+        </section> 
+    </section>
+    <section>
+      <h3>hints</h3>
+      <section data-auto-animate
+        data-no="17" 
+        data-positionx="0.8" 
+        data-positiony="0.03" 
+        data-scale="1" 
+        data-motionno="0">
+        <pre><code data-trim data-noescape>
+          #include &lt;stdio.h&gt;
+          int main(){
+            //輸入N、M
+            //輸入玩家A、B的賓果卡
+            //輸入M個數字並模擬賓果遊戲過程
+              //玩家A、B的賓果卡上，將剛剛輸入的數字設為-1
+              //檢查連線：-1有連成一線的就是連線成功
+            return 0;
+          }
+        </code></pre> 
+      </section>    
+    </section>
+    <section>
+      <h3>解答</h3>
+      <section data-auto-animate
+        data-no="8" 
+        data-positionx="0.8" 
+        data-positiony="0.03" 
+        data-scale="1" 
+        data-motionno="0">
+        <font size=5>header file && typedef</font>
+        <pre><code data-trim data-noescape data-line-numbers>
+          #include &lt;stdio.h&gt;
+          #include &lt;stdlib.h&gt;
+          
+          typedef struct bingo{
+            int *boardA;
+            int *boardB;
+            int N;  //代表棋盤的邊長
+            int N2; //N*N
+          } Bingo;
+        </code></pre> 
+      </section>    
+    </section>
+    <section>
+      <h3>解答</h3>
+      <section data-auto-animate
+        data-no="8" 
+        data-positionx="0.8" 
+        data-positiony="0.03" 
+        data-scale="1" 
+        data-motionno="0">
+        <font size=5>副程式_檢查一列/一欄/斜線是否有連線</font>
+        <pre><code data-trim data-noescape data-line-numbers>
+          int chkOne(int x, int y, int dx, int dy, int *board, int N){
+            //檢查一列/一欄/斜線是否有連線
+            for (int i=0;i&lt;N;i++){
+              int idx=y*N+x; //將索引值展開變成一維
+              if (board[idx]>=0) //不會連線
+                return 0;
+              x+=dx;
+              y+=dy;
+            }
+            return 1; //連線
+          }
+        </code></pre> 
+      </section>    
+    </section>
+    <section>
+      <h3>解答</h3>
+      <section data-auto-animate
+        data-no="8" 
+        data-positionx="0.8" 
+        data-positiony="0.03" 
+        data-scale="1" 
+        data-motionno="0">
+        <font size=5>副程式_依序檢查整個棋盤是否有連線</font>
+        <pre><code data-trim data-noescape data-line-numbers>
+          int chkBoard(int *board, int N){
+            for (int i=0;i&lt;N;i++){
+              if (chkOne(0,i,1,0,board,N)) //檢查橫線
+                return 1;
+              if (chkOne(i,0,0,1,board,N)) //檢查直線
+                return 1;
+            }
+            if (chkOne(0,0,1,1,board,N)) //檢查左上到右下
+                return 1; 
+            return chkOne(N-1,0,-1,1,board,N);//最後檢查右上到左下
+          }
+        </code></pre> 
+      </section>    
+    </section>
+    <section>
+      <h3>解答</h3>
+      <section data-auto-animate
+        data-no="8" 
+        data-positionx="0.8" 
+        data-positiony="0.03" 
+        data-scale="1" 
+        data-motionno="0">
+        <font size=5>副程式_檢查是否有分出勝負以及輸贏狀況</font>
+        <pre><code data-trim data-noescape data-line-numbers>
+          //0:A贏; 1:B贏; 2:平手; 3:尚未分出勝負
+          int chkWin(Bingo *bingo){
+            int winA,winB;          
+            winA=chkBoard(bingo->boardA,bingo->N);
+            winB=chkBoard(bingo->boardB,bingo->N);
+            if (winA && !winB)
+              return 0;
+            if (!winA && winB)
+              return 1;
+            if (winA && winB)
+              return 2;
+            return 3; //兩者皆未贏:尚未分出勝負
+          }
+        </code></pre> 
+      </section>    
+    </section>
+    <section>
+      <h3>解答</h3>
+      <section data-auto-animate
+        data-no="8" 
+        data-positionx="0.8" 
+        data-positiony="0.03" 
+        data-scale="1" 
+        data-motionno="0">
+        <font size=5>副程式_標記圈選的數字</font>
+        <pre><code data-trim data-noescape data-line-numbers>
+          void mark(Bingo *bingo,int num){  //標記圈選的數字
+            int i;
+            for (i=0;i&lt;bingo->N2;i++){ //將對應數字標記為-1代表已被圈選
+              if (bingo->boardA[i]==num)
+                bingo->boardA[i]=-1;
+              if (bingo->boardB[i]==num)
+                bingo->boardB[i]=-1;
+            } 
+          }
+        </code></pre> 
+      </section>    
+    </section>
+    <section>
+      <h3>解答</h3>
+      <section data-auto-animate
+        data-no="8" 
+        data-positionx="0.8" 
+        data-positiony="0.03" 
+        data-scale="1" 
+        data-motionno="0">
+        <font size=5>主程式</font>
+        <pre><code data-trim data-noescape data-line-numbers="1-4|6-13|15-28|30-33">
+          int main(){
+            Bingo bingo;
+            int M,i,cur_num,status,finished;
+            const char *result[3]={"A Win","B Win","Tie"};
+          
+            scanf("%d %d",&bingo.N,&M); //讀入N,M
+            bingo.N2=bingo.N*bingo.N;
+            bingo.boardA=malloc(sizeof(int)*bingo.N2);
+            bingo.boardB=malloc(sizeof(int)*bingo.N2);
+            for (i=0;i&lt;bingo.N2;i++)  //讀入兩個棋盤
+              scanf("%d",&bingo.boardA[i]);
+            for (i=0;i&lt;bingo.N2;i++)
+              scanf("%d",&bingo.boardB[i]);
+          
+            finished=0; //初始化finished代表還要繼續玩
+            for (i=0;i&lt;M;i++){  //開始玩bingo(圈數字連線)
+              scanf("%d",&cur_num); //讀入圈選的數字
+              if (finished) //已分出勝負，不需繼續玩，但仍須將輸入讀完
+                continue;
+              mark(&bingo,cur_num); //標記圈選的數字在棋盤
+              status=chkWin(&bingo); //取得輸贏狀態
+              if (status&lt;3){  //已分出勝負(0:A贏; 1:B贏; 2:平手)
+                printf("%s",result[status]);
+                finished=1; 
+              }
+            }
+            if (!finished) //直到全部數字圈選完都沒分出勝負
+              printf("Tie");
+            
+            free(bingo.boardA);
+            free(bingo.boardB);
+            return 0;
+          }
+        </code></pre> 
+      </section>    
+    </section>
+    </div>
+  </div>
+  <div id="pageIndex"></div>
+  <!-- reveal.js-->
+  <script src="vendor/reveal/reveal.js"></script>
+  <!--plugin-->
+  <script src="vendor/reveal/plugin/math/math.js"></script>
+  <script src="vendor/reveal/plugin/search/search.js"></script>
+  <script src="vendor/reveal/plugin/zoom/zoom.js"></script>
+
+  <script src="vendor/reveal/plugin/notes/notes.js"></script>
+  <script src="vendor/reveal/plugin/markdown/markdown.js"></script>
+  <script src="vendor/reveal/plugin/highlight/highlight.js"></script>
+  <script src="main-ppt.js"></script>
+</body>
+
+</html>
