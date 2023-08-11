@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=1900">
+  <title>o12-5 OX遊戲</title>
+  <style>
+    html,
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+  </style>
+  <link rel="stylesheet" href="vendor/reveal/reset.css">
+  <link rel="stylesheet" href="vendor/reveal/reveal.css">
+  <link rel="stylesheet" href="vendor/reveal/theme/sky.css">
+
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="vendor/reveal/plugin/highlight/zenburn.css"><!--edit-->
+  <!-- Pollyfill script -->
+  <script src="https://unpkg.com/core-js-bundle@3.6.1/minified.js"></script>
+  <!-- Live2DCubismCore script -->
+  <script src="./dist/live2dcubismcore.js"></script>
+  <!-- Build script -->
+  <script src="./dist/bundle.js"></script>
+  <style>
+    ul, ol{
+      list-style: none;
+      margin-left: 0;
+    }
+    .reveal {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    #pageIndex{
+      position: absolute;
+      right: 24px;
+      bottom: 24px;
+      background: #000;
+      color: #fff;
+      font-size: 26px;
+    }
+    .controls{
+      bottom: 24px !important;
+    }
+    table{
+      font-size: 24px !important;
+      border-style: double !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <!--
+         data-no: 老師網頁的cubism人物編號(從0開始，網頁上的編號-1)
+         data-positionx: cubism人物水平位移範圍(建議-1 ~ 0.9)
+         data-positiony: cubism人物垂直位移範圍(建議-0.9~0.4)
+         data-scale: cubism人物縮放(建議1~2之間的小數值，最大極限是3)
+         data-motionno: cubism人物指定動作編號(從0開始，請參閱model3.json檔案的ALL MOTION GROUP)
+      -->
+      <section>
+        <h3 style="text-align: left;">O12-5 OX遊戲</h3>
+        <section
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <p style="font-size: 24px; text-align: left;">
+            Player與Computer下棋，未下處標0，Player標1，Computer 標2。依序輪流下，直到有一方在棋盤上的橫縱軸或斜線，達成三個 1 或三個 2 的連線或平手時，遊戲結束。下棋九宮格位置以九個數字表示如下。
+          </p>
+          <img src="img/ch7/005.png">
+        </section>
+        <section
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+            <p style="font-size: 24px; text-align: left; font-weight: bold;">
+              輸入說明<br></p>
+            <p style="font-size: 24px; text-align: left;">  
+              1.第一行輸入兩個整數 M,N，1 &le; M &le; 2。M=1 代表 Player 先下，2 代表 Computer 先下，N 為下的總步數。<br>
+              2.第二行，N*2 個[1, 2, 3, …, 9]數字，以空白間格，分別為 Player 和 Computer 輪流下的位置。若有錯誤輸入，如： 重複位置、超出九宮格位置，不計入 N*2 數字，亦即測資一定有 N*2 個正確輸入。<br></p>
+            <p style="font-size: 24px; text-align: left; font-weight: bold;">
+              輸出說明<br></p>
+            <p style="font-size: 24px; text-align: left;"> 
+              1. 第 1 行，若有錯誤輸入，要輸出 Error，否則輸出 OK。<br>
+              2. 第 2, 3, 4 行，輸出目前棋盤狀況。<br>
+              3. 第 5 行，輸出 [1, 2, 3, 4]其中一值，1 代表 Player win，2 代表 Computer win，3 代表 Tie，4 代表未分勝負。<br>
+              4. 第 6 行，若未分勝負，則輸出 Computer 應該下在哪裡比較好-可以阻擋對手連線、或完成自己連線。<br></p>
+        </section>
+      </section>
+      <section>
+        <h3>Input/Output</h3>
+        <section data-auto-animate
+        data-no="6" 
+        data-positionx="0.8" 
+        data-positiony="0.03" 
+        data-scale="1" 
+        data-motionno="0">
+          <img src="img/ch7/006.png">
+        </section>
+        <section data-auto-animate
+        data-no="6" 
+        data-positionx="0.8" 
+        data-positiony="0.03" 
+        data-scale="1" 
+        data-motionno="0">
+          <table>
+            <tr><th>Sample Input</th><th>Sample Output</th></tr>
+            <tr>
+              <td>
+                1 4<br>
+                1 5 3 2 8 4 6 9
+              </td>
+              <td>
+                OK<br>
+                1 2 1<br>
+                2 2 1<br>
+                0 1 2<br>
+                3
+              </td>
+            </tr>
+            <tr>
+              <td>
+                1 3<br>
+                4 5 7 1 9 8<br>
+              </td>
+              <td>
+                OK<br>
+                2 0 0<br>
+                1 2 0<br>
+                1 2 1<br>
+                4<br>
+                2
+              </td>
+            </tr>
+          </table>
+        </section>
+      </section>
+      <section>
+        <h3>hints</h3>
+        <section data-auto-animate
+          data-no="17" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <pre><code data-trim data-noescape>
+            #include &lt;stdio.h&gt;
+            
+            int main(){
+
+              // 輸入m, n（分別為先手、總步數）
+              // Player和Computer輪流下的情況、記錄棋盤現況
+              // 輸入時紀錄是否有錯誤輸入
+              // 所謂的錯誤輸入：有重複的數字、有超出1~9範圍的數字
+              // 以棋盤現況判斷是否有勝利或平手的情況
+              // 勝負未分：Computer該下何處才能連線or使對手無法連線
+
+              // 用一維陣列或二維陣列都可以
+              
+              return 0;
+            }
+          </code></pre> 
+        </section>    
+      </section>
+      <section>
+        <h3>解答</h3>
+        <section data-auto-animate
+          data-no="8" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <font size=5>標頭檔、typedef</font>
+          <pre><code data-trim data-noescape data-line-numbers>
+            #include &lt;stdio.h&gt;
+            #include &lt;string.h&gt;
+            
+            typedef struct OXGame {
+              int board[9];	//棋盤，值為0,1,2
+              int remain;   //棋盤中剩幾個位置沒下
+              int suggPos;  //建議下的位置
+            } OX;
+          </code></pre> 
+        </section>    
+      </section>
+      <section>
+        <h3>解答</h3>
+        <section data-auto-animate
+          data-no="8" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <font size=5>副程式-判斷某直/橫/斜線若要連線還需下的數量</font>
+          <pre><code data-trim data-noescape data-line-numbers="1-12|13-23">
+            //回傳玩家(1)或電腦(2)需要贏(連線)還需再下的數量, -1代表無法連線
+            //如果差一個就能連線，將該位置填回game->suggPos
+            int sumOne(int idx, int delta, int player, OX *game){
+              int cnt,i;
+              cnt=0;
+              for (int i=0;i&lt;3;i++){
+                if (game->board[idx]==0)
+                  cnt++;
+                else if (game->board[idx]!=player) //對手有下過
+                  return -1;
+                idx+=delta;
+              }
+              if (cnt==1){  //再下一步棋該角色就贏了
+                for (i=0;i&lt;3;i++){
+                  idx-=delta; //逆著檢查回去
+                  if (game->board[idx]==0){
+                    game->suggPos=idx; //下在該位置會讓該角色贏
+                    break;
+                  }
+                }
+              }
+              return cnt;
+            }
+          </code></pre> 
+        </section>    
+      </section>
+      <section>
+        <h3>解答</h3>
+        <section data-auto-animate
+          data-no="8" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <font size=5>副程式-找出下了會贏的位置(如果有)，並回傳符合條件的有幾條</font>
+          <pre><code data-trim data-noescape data-line-numbers="">
+            //回傳值為有幾條符合條件的橫/直/斜線
+            //n=0表示已連線，n=1表示即將連線，此時game->suggPos為要下的位置
+            int findWinPos(int player, int n, OX *game){
+              int cnt=0;
+              for (int i=0; i&lt;3; i++){
+                if (sumOne(i*3,1,player,game)==n) //橫線
+                  cnt++;
+                if (sumOne(i,3,player,game)==n)  //直線
+                  cnt++;
+              }
+              if (sumOne(0,4,player,game)==n) //左上右下
+                cnt++;
+            
+              if (sumOne(2,2,player,game)==n) //右上左下
+                cnt++;
+              return cnt; //有cnt條符合條件的橫/直/斜線
+            }
+          </code></pre> 
+        </section>    
+      </section>   
+      <section>
+        <h3>解答</h3>
+        <section data-auto-animate
+          data-no="8" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <font size=5>副程式-檢查當前勝負情形</font>
+          <pre><code data-trim data-noescape data-line-numbers="">
+            int checkWin(OX *game){
+              //分別檢查三條橫線、三條直線、兩條對角線是否有連線
+              //若有連線，回傳贏家(1為玩家贏，2為電腦贏)
+              //若無連線，檢查是否棋盤已經下滿了，是的話為平手(Tie)，
+              //此時回傳3
+              //否則的話回傳4代表未分勝負
+              for(int i=1; i&lt;=2; i++)
+                if (findWinPos(i,0,game)>0)//有至少一條連線
+                  return i; //回傳贏家
+              if (game->remain==1) //棋盤只差一個空位
+                if (findWinPos(1,1,game)==0 && findWinPos(2,1,game)==0)
+                  return 3; //只剩一個空位卻沒人差一個連線，視為平手
+              return 4; //4代表未分勝負
+            }
+          </code></pre> 
+        </section>    
+      </section>         
+      <section>
+        <h3>解答</h3>
+        <section data-auto-animate
+          data-no="8" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <font size=5>副程式-未分輸贏的情況下，取得實際(1~9)建議下的位置</font>
+          <pre><code data-trim data-noescape data-line-numbers="">
+            int suggestPos(OX* game){
+              if (findWinPos(2, 1, game)>0) //如果下一步電腦可贏
+                return game->suggPos+1;     //把在sumOne設好的suggPos+1返回
+              if (findWinPos(1, 1, game)>0) //對手(玩家)要贏了
+                return game->suggPos+1; //下這一步可阻止對手(玩家)贏
+              //沒有直接影響勝負的位置，隨便下一個空位
+              for (int i=0;i&lt;9;i++)
+                if (game->board[i] == 0)
+                  return i+1;
+            }
+          </code></pre> 
+        </section>    
+      </section>
+      <section>
+        <h3>解答</h3>
+        <section data-auto-animate
+          data-no="8" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <font size=5>主程式</font>
+          <pre><code data-trim data-noescape data-line-numbers="1-7|9-39|41-54">
+            int main(){
+              OX game;
+              int M,N,i,error,cur_player,cur_pos,winState;
+            
+              game.remain=9;  //一開始棋盤有九個空位
+              memset(game.board,0,sizeof(game.board)); //將棋盤全部初始化為0
+              scanf("%d %d",&M,&N);
+            
+              error=0;
+             //M=1:玩家先下；M=2:電腦先下
+              if (M!=1 && M!=2) 
+                error=1;
+              cur_player=M; //初始化玩家為先下者
+              winState=4; //未知贏家(未分勝負)
+              N*=2; //有2*N個正確輸入
+              while (N--){
+                scanf("%d",&cur_pos);
+                cur_pos--; //讀入的是1~9，須轉為0~8
+                if (winState!=4)  //已分勝負
+                  continue;       //仍須把輸入讀完
+                else if (cur_pos&lt;0 || cur_pos>8){ //超出九宮格範圍
+                  error=1;
+                  N++;  //跳過該錯誤輸入，總共要讀取2*N個正確輸入
+                }
+                else if (game.board[cur_pos]!=0){ //該位置已經有被下過了
+                  error=1;
+                  N++;
+                }
+                else{
+                  game.board[cur_pos]=cur_player;
+                  game.remain--;  //棋盤的空位少了一個
+                  winState=checkWin(&game); //取得現階段勝負情形
+                  cur_player=2-cur_player+1; //切換為另一位玩家
+                }
+              }
+              if (error)
+                printf("Error\n");
+              else
+                printf("OK\n");
+
+              //印出棋盤現狀
+              for (i=0;i&lt;9;i++){
+                printf("%d ",game.board[i]);
+                if (i%3==2) //印三個要換行
+                  printf("\n");
+              } 
+              //印出勝負情形
+              printf("%d\n",winState);
+              //如果未分勝負，輸出電腦應該下在哪裡比較好：
+              //可以阻擋對手連線、或完成自己連線。
+              if (winState==4) 
+                printf("%d\n", suggestPos(&game));
+              return 0;
+            }
+          </code></pre> 
+        </section>    
+      </section>         
+    </div>
+  </div>
+  <div id="pageIndex"></div>
+  <!-- reveal.js-->
+  <script src="vendor/reveal/reveal.js"></script>
+  <!--plugin-->
+  <script src="vendor/reveal/plugin/math/math.js"></script>
+  <script src="vendor/reveal/plugin/search/search.js"></script>
+  <script src="vendor/reveal/plugin/zoom/zoom.js"></script>
+
+  <script src="vendor/reveal/plugin/notes/notes.js"></script>
+  <script src="vendor/reveal/plugin/markdown/markdown.js"></script>
+  <script src="vendor/reveal/plugin/highlight/highlight.js"></script>
+  <script src="main-ppt.js"></script>
+</body>
+
+</html>
