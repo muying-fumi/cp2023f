@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=1900">
+  <title>o11-4 Password Strength</title>
+  <style>
+    html,
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+  </style>
+  <link rel="stylesheet" href="vendor/reveal/reset.css">
+  <link rel="stylesheet" href="vendor/reveal/reveal.css">
+  <link rel="stylesheet" href="vendor/reveal/theme/sky.css">
+
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="vendor/reveal/plugin/highlight/zenburn.css"><!--edit-->
+  <!-- Pollyfill script -->
+  <script src="https://unpkg.com/core-js-bundle@3.6.1/minified.js"></script>
+  <!-- Live2DCubismCore script -->
+  <script src="./dist/live2dcubismcore.js"></script>
+  <!-- Build script -->
+  <script src="./dist/bundle.js"></script>
+  <style>
+    ul, ol{
+      list-style: none;
+      margin-left: 0;
+    }
+    .reveal {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    #pageIndex{
+      position: absolute;
+      right: 24px;
+      bottom: 24px;
+      background: #000;
+      color: #fff;
+      font-size: 26px;
+    }
+    .controls{
+      bottom: 24px !important;
+    }
+    table{
+      font-size: 24px !important;
+      border-style: double !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <!--
+         data-no: 老師網頁的cubism人物編號(從0開始，網頁上的編號-1)
+         data-positionx: cubism人物水平位移範圍(建議-1 ~ 0.9)
+         data-positiony: cubism人物垂直位移範圍(建議-0.9~0.4)
+         data-scale: cubism人物縮放(建議1~2之間的小數值，最大極限是3)
+         data-motionno: cubism人物指定動作編號(從0開始，請參閱model3.json檔案的ALL MOTION GROUP)
+      -->
+      <section>
+        <h3 style="text-align: left;">Password strength</h3>
+        <section data-auto-animate
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <p style="font-size: 24px; text-align: left;">
+            1. N 個英文字母小寫加 N 分。<br>
+            2. X 個英文字母大寫加 X*3 分。<br>
+            3. Y 個數字加 Y*2 分。<br>
+            4. M 個特殊符號{ ~!@#$%^&*&lt;&gt;_+=}加 M*4.5 分。<br>
+            5. 有五個以上的數字且任兩個數字在密碼中的位置不相鄰， 例如：「1a1a1a1a1」，加 10 分。
+          </p>
+        </section>
+        <section data-auto-animate
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <p style="font-size: 24px; text-align: left; font-weight: bold;">
+            輸入說明：</p>
+          <p style="font-size: 24px; text-align: left;">
+            輸入 N(2&lt;=N&lt;=5)組密碼，每組以換行區隔，且任兩組密碼 strength 不會相同，可一直輸入，直到輸入-1 停止。
+          </p>
+          <p style="font-size: 24px; text-align: left; font-weight: bold;">
+            輸出說明：</p>
+          <p style="font-size: 24px; text-align: left;">
+            計算各組密碼 strength，依序輸出最高及最低兩組密碼及其 strength，兩組密碼以換行區隔，密碼與分數間以空格區隔。
+          </p>
+        </section>
+      </section>
+      <section>
+          <h3>Input/Output</h3>
+          <section data-auto-animate
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+            <img src="img/ch13/001.png">
+          </section>        
+      </section>
+      <section>
+        <h3>hints</h3>
+        <section data-auto-animate
+          data-no="17" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <pre><code data-trim data-noescape>
+            #include &lt;stdio.h&gt;
+            #include &lt;string.h&gt;
+            int main(){
+              // 輸入字串
+              // 如果該字串為-1，停止輸入，開始比較強度並輸出最強&最弱
+              // 如果該字串為密碼，計算該密碼之強度
+              // 注意：密碼強度是浮點數
+              // 特殊符號包含：{ ~!@#$%^&*&lt;&gt;_+=}
+              return 0;
+            }
+          </code></pre>
+        </section> 
+      </section>
+      <section>
+        <h3>解答</h3>
+        <section data-auto-animate
+          data-no="8" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <font size=5>標頭檔 & 副程式-計算密碼強度</font>
+          <pre><code data-trim data-noescape data-line-numbers="1-2|4-7|9-28|29-32">
+            #include &lt;stdio.h>
+            #include &lt;string.h>
+            
+            float calcStrength(char* s){
+              const char *spc_chars = "~!@#$%^&*&lt;>_+=";
+              float strength=0;
+              int digit_cnt=0, grp_cnt=0;
+            
+              while (*s) {
+                if (*s >= '0' && *s &lt;= '9') { //數字0-9
+                  strength += 2;	//Y個數字+2*Y分，一個數字+2分
+                  grp_cnt++;
+                  if (grp_cnt == 1)       //每群數字的第一個
+                    digit_cnt++;
+                  else if (grp_cnt == 2)  //每群數字的第二個
+                    digit_cnt--; //複數個數字相鄰，不計入五個不相鄰數字
+                }
+                else {
+                  grp_cnt = 0;
+                  if (*s >= 'A' && *s &lt;= 'Z') //大寫字母
+                    strength += 3;
+                  else if (*s >= 'a' && *s &lt;= 'z')    //小寫字母
+                    strength += 1;
+                  else if (strchr(spc_chars, *s) != NULL) //特殊符號
+                    strength += 4.5;
+                }
+                s++;
+              }
+              if (digit_cnt >= 5)
+                strength += 10;
+              return strength;
+            }
+          </code></pre>
+        </section> 
+      </section>
+      <section>
+        <h3>解答</h3>
+        <section data-auto-animate
+          data-no="8" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <font size=5>主程式</font>
+          <pre><code data-trim data-noescape data-line-numbers="">
+            int main(){
+              char buf[80],max_pwd[80],min_pwd[80];
+              float score, max_score=0, min_score=9999;
+            
+              while (gets(buf)) {	//每次讀入一整行輸入
+                if (strcmp(buf, "-1") == 0)	//讀到-1結束輸入
+                  break;
+                score = calcStrength(buf);
+                if (score < min_score) {
+                  strcpy(min_pwd, buf);
+                  min_score = score;
+                }
+                if (score > max_score) {
+                  strcpy(max_pwd, buf);
+                  max_score = score;
+                }
+              }
+              printf("%s %.1f\n", max_pwd, max_score);
+              printf("%s %.1f\n", min_pwd, min_score);
+            
+              return 0;
+            }
+          </code></pre>
+        </section> 
+      </section>
+    </div>
+  </div>
+  <div id="pageIndex"></div>
+  <!-- reveal.js-->
+  <script src="vendor/reveal/reveal.js"></script>
+  <!--plugin-->
+  <script src="vendor/reveal/plugin/math/math.js"></script>
+  <script src="vendor/reveal/plugin/search/search.js"></script>
+  <script src="vendor/reveal/plugin/zoom/zoom.js"></script>
+
+  <script src="vendor/reveal/plugin/notes/notes.js"></script>
+  <script src="vendor/reveal/plugin/markdown/markdown.js"></script>
+  <script src="vendor/reveal/plugin/highlight/highlight.js"></script>
+  <script src="main-ppt.js"></script>
+</body>
+
+</html>
