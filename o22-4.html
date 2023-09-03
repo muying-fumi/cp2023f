@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=1900">
+  <title>o22-4 開發專案</title>
+  <style>
+    html,
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+  </style>
+  <link rel="stylesheet" href="vendor/reveal/reset.css">
+  <link rel="stylesheet" href="vendor/reveal/reveal.css">
+  <link rel="stylesheet" href="vendor/reveal/theme/sky.css">
+
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="vendor/reveal/plugin/highlight/zenburn.css"><!--edit-->
+  <!-- Pollyfill script -->
+  <script src="https://unpkg.com/core-js-bundle@3.6.1/minified.js"></script>
+  <!-- Live2DCubismCore script -->
+  <script src="./dist/live2dcubismcore.js"></script>
+  <!-- Build script -->
+  <script src="./dist/bundle.js"></script>
+  <style>
+    ul, ol{
+      list-style: none;
+      margin-left: 0;
+    }
+    .reveal {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    #pageIndex{
+      position: absolute;
+      right: 24px;
+      bottom: 24px;
+      background: #000;
+      color: #fff;
+      font-size: 26px;
+    }
+    .controls{
+      bottom: 24px !important;
+    }
+    table{
+      font-size: 24px !important;
+      border-style: double !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <!--
+         data-no: 老師網頁的cubism人物編號(從0開始，網頁上的編號-1)
+         data-positionx: cubism人物水平位移範圍(建議-1 ~ 0.9)
+         data-positiony: cubism人物垂直位移範圍(建議-0.9~0.4)
+         data-scale: cubism人物縮放(建議1~2之間的小數值，最大極限是3)
+         data-motionno: cubism人物指定動作編號(從0開始，請參閱model3.json檔案的ALL MOTION GROUP)
+      -->
+
+      <!--Q1-->
+      <section>
+        <h3 style="text-align: left;">開發專案(進階題)</h3>
+        <section data-auto-animate
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <p style="font-size: 24px; text-align: left;">
+            開發軟體專案時，專案被分割為許多工作任務(task)，分配給多位程式設計師。<br>
+            這些 task 有順序關係，只有當順序在前的 task 完成，才開始開發順序在後的 task。可使用有向無環圖，表示這些 task 順序關係。每個節點代表一個 task，節點內的數字為編號， 上方數字代表開發 task 所需時間；邊與箭頭表示開發順序。請計算開發專案所需時間。
+          </p>
+        </section>
+        <section data-auto-animate
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <p style="font-size: 24px; text-align: left;">
+            以下圖為例，節點 2 完成後，才能開始節點 4 的開發。 節點 3 與節點 4 都完成後，才能開始節點 5 的開發。<br>
+            節點 1 需 6 小時，節點 2 需 5 小時，節點 3 需 11 小時，節點 4 需 4 小時，節點 5 需 8 小時。<br>
+            完成專案最少需 25 小時。            
+          </p>
+          <img src="img/ch17/000.png" style="max-height: 300px;">
+        </section>
+        <section data-auto-animate
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <p style="font-size: 24px; text-align: left; font-weight: bold;">
+            輸入說明</p>
+          <p style="font-size: 24px; text-align: left;">
+            Line 1，正整數 N，代表專案共有 N 個 task。<br>
+            Line 2～N+1，從第 1 個 task 開始依序往後：<br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;每一行輸入正整數 T, K, t1~tk；<br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;T 是完成此 task 時間，K 表示此 task 完成，後面 K 個 task 才能開始做，<br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;t1~tk 表示等待此 task 完成的 task 編號。
+          </p>
+          <p style="font-size: 24px; text-align: left; font-weight: bold;">
+            輸出說明</p>
+          <p style="font-size: 24px; text-align: left;">
+            此專案至少需要花費的時間。
+          </p>
+        </section>
+      </section>
+      <section>
+        <h3>Input/Output</h3>
+        <section data-auto-animate
+        data-no="6" 
+        data-positionx="0.8" 
+        data-positiony="0.03" 
+        data-scale="1" 
+        data-motionno="0">
+          <img src="img/ch17/001.png">
+        </section>        
+        <section data-auto-animate
+        data-no="6" 
+        data-positionx="0.8" 
+        data-positiony="0.03" 
+        data-scale="1" 
+        data-motionno="0">
+          <img src="img/ch17/002.png">
+        </section> 
+        <section data-auto-animate
+        data-no="6" 
+        data-positionx="0.8" 
+        data-positiony="0.03" 
+        data-scale="1" 
+        data-motionno="0">
+          <img src="img/ch17/003.png">
+        </section>
+        <section data-auto-animate
+        data-no="6" 
+        data-positionx="0.8" 
+        data-positiony="0.03" 
+        data-scale="1" 
+        data-motionno="0">
+          <img src="img/ch17/004.png">
+        </section>
+        <section data-auto-animate
+        data-no="6" 
+        data-positionx="0.8" 
+        data-positiony="0.03" 
+        data-scale="1" 
+        data-motionno="0">
+          <img src="img/ch17/005.svg">
+        </section>
+      </section>
+      <section>
+        <section data-auto-animate
+          data-no="17" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <h3>hints</h3>
+          <pre><code data-trim data-noescape>
+            #include &lt;stdio.h&gt;
+            int main(){
+              int N;  //共有N個task
+              for(int i = 0; i &lt; N; i++){
+                //輸入第i個task所需時間、完成該task之後才能做後面k個task、後面k個task的編號
+                //檢查第i個task是否已有隸屬的路徑，若無，則生成一條路徑
+                //處理後面k個task，將第1個task跟前面的parent連結
+                //剩下當新path的起始，並將path的from_t設為截至parent的總時間
+              }
+              //N個task都處理完後，找出「最耗時」的路徑總時
+              return 0;
+            }
+          </code></pre> 
+        </section>   
+        <section data-auto-animate
+          data-no="17" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <h3>hints</h3>
+          <img src="img/ch17/pathIllustration.svg">
+        </section>   
+      </section>
+      <section>
+        <section data-auto-animate
+          data-no="8" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <h3>解答</h3>
+          <font size=5>標頭檔 & 結構定義</font>
+          <pre><code data-trim data-noescape data-line-numbers>
+            #include &lt;stdio.h>
+            #include &lt;stdlib.h>
+            #include &lt;string.h>
+            
+            typedef struct TN {
+              int num;		//節點編號(1~N)
+              int time;		//所需時間
+              struct TN *next;	//下一節點
+              struct TP *path;	//隸屬的路徑
+            } TaskNode;
+            
+            typedef struct TP {
+              TaskNode *first;	//第一個節點的指標 
+              struct TP *next_path;//下一個路徑
+              int from_t;		//路徑起始時間(截至該路徑的前一個節點)
+            } TaskPath;
+          </code></pre> 
+        </section>   
+      </section>
+      <section>
+        <section data-auto-animate
+          data-no="8" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <h3>解答</h3>
+          <font size=5>副程式_取得最後一條path</font>
+          <pre><code data-trim data-noescape data-line-numbers>
+            //取得最後一條path
+            //因為不知道總共有幾條path，故使用link list管理
+            TaskPath* getLast(TaskPath *path)	{
+              while (path->next_path != NULL)
+                path = path->next_path;
+              return path;
+            }
+          </code></pre> 
+        </section>   
+      </section>
+      <section>
+        <section data-auto-animate
+          data-no="8" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <h3>解答</h3>
+          <font size=5>副程式_取得整條path(截至to_node)花費的時間</font>
+          <pre><code data-trim data-noescape data-line-numbers>
+            //取得整條path(截至to_node)花費的時間
+            int getPathTime(TaskPath *p_ptr, TaskNode *to_node) {
+              TaskNode *n_ptr;
+              int rtn = p_ptr->from_t;	//記錄總時
+
+              n_ptr = p_ptr->first;	//初始化指向node的指標
+              while (n_ptr != NULL && n_ptr != to_node) {
+                rtn += n_ptr->time;
+                n_ptr = n_ptr->next;
+              }
+
+              //如果該path的最後一個節點非末端節點
+              //需額外加上該節點的時間(while迴圈沒加到)
+              if (to_node != NULL)
+                rtn += to_node->time;
+
+              return rtn;
+            }
+          </code></pre> 
+        </section>   
+      </section>
+      <section>
+        <section data-auto-animate
+          data-no="8" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <h3>解答</h3>
+          <font size=5>副程式_取得截至該node為止，路徑上花費的總時</font>
+          <pre><code data-trim data-noescape data-line-numbers>
+            //取得截至該node為止，路徑上花費的總時
+            //如果該node尚不屬於任何路徑，直接回傳該node的時間
+            int getEndTime(TaskNode *node) {
+              if (node->path == NULL)
+                return node->time;
+              return getPathTime(node->path, node);
+            }
+          </code></pre> 
+        </section>   
+      </section>
+      <section>
+        <section data-auto-animate
+          data-no="8" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <h3>解答</h3>
+          <font size=5>副程式_新增一條路徑</font>
+          <pre><code data-trim data-noescape data-line-numbers>
+            //新增一條路徑
+            TaskPath* newPath(TaskPath *root, TaskNode *n_ptr, TaskNode *from_node) {
+              TaskPath* p_ptr;
+              //root沒有任何節點，把root視為新增的路徑
+              if (root->first == NULL) 
+                p_ptr = root;
+              else {
+                p_ptr = malloc(sizeof(TaskPath));
+                //該path前面仍有node，須加上截至上一個節點的時間
+                if (from_node != NULL) 
+                  p_ptr->from_t = getEndTime(from_node);
+                else
+                  p_ptr->from_t = 0;
+                p_ptr->next_path = NULL; 
+                getLast(root)->next_path = p_ptr; //新路徑設為最後一條路徑
+              }
+              p_ptr->first = n_ptr;
+              n_ptr->path = p_ptr;
+              return p_ptr;
+            }
+          </code></pre> 
+        </section>   
+      </section>
+      <section>
+        <section data-auto-animate
+          data-no="8" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <h3>解答</h3>
+          <font size=5>主程式</font>
+          <pre><code data-trim data-noescape data-line-numbers="1-12|14-39|40-49|51-60">
+            int main() {
+              char buf[256], *p;
+              TaskNode *node_ary, *n_ptr, *n_ptr1;
+              TaskPath root_path, *p_ptr, *tmp_path;
+              int N, n_cnt, k, t , longest;
+            
+              //root_path只有一個，代表最一開始產生的path
+              memset(&root_path, 0, sizeof(root_path));
+            
+              scanf("%d\n", &N);	//讀入node個數
+              node_ary = malloc(N * sizeof(TaskNode)); //配置好所有的node
+              memset(node_ary, 0, N*sizeof(TaskNode)); //初始化
+            
+              for (int i = 0; i &lt; N; i++) {
+                gets(buf);		//time, n, t1..tn
+                p = strtok(buf, " ");
+                n_ptr = &node_ary[i];	//指向我們要編輯的node
+                n_ptr->num = i + 1;
+                n_ptr->time = atoi(p);
+            
+                if (n_ptr->path == NULL) //該節點尚未加入任何path
+                  newPath(&root_path, n_ptr, NULL);
+            
+                p = strtok(NULL, " ");
+                n_cnt = atoi(p);	//取得該node後面還有幾個node
+                for(k=0; k&lt;n_cnt; k++)	{
+                  p = strtok(NULL, " ");
+                  t = atoi(p);		//子節點的編號
+                  n_ptr1 = &node_ary[t - 1]; //子節點的指標
+                  if (n_ptr->next == NULL) { //父節點目前無後繼者
+                    n_ptr->next = n_ptr1;
+                    n_ptr1->path = n_ptr->path;	//隸屬同一路徑
+                  }
+                  else { //父節點已有後繼者，新增路徑並將n_ptr1設為路徑的起點
+                    //該新路徑基於父節點的時間，故參數from_node傳的是父節點n_ptr
+                    newPath(&root_path, n_ptr1, n_ptr);	
+                  }
+                }
+              }
+              //必須全部task都完成，故需找出最耗時的路徑，輸出該路徑花費時間
+              longest = 0;
+              p_ptr = &root_path;
+              while (p_ptr != NULL) {
+                t = getPathTime(p_ptr, NULL);
+                if (t > longest)
+                  longest = t;
+                p_ptr = p_ptr->next_path;
+              }
+              printf("%d\n", longest);
+            
+              //釋放先前配置的記憶體
+              p_ptr = root_path.next_path;
+              while (p_ptr != NULL) {
+                tmp_path = p_ptr;
+                p_ptr = p_ptr->next_path;
+                free(tmp_path);
+              }
+              free(node_ary);
+              return 0;
+            }
+          </code></pre> 
+        </section>   
+      </section>
+    </div>
+  </div>
+  <div id="pageIndex"></div>
+  <!-- reveal.js-->
+  <script src="vendor/reveal/reveal.js"></script>
+  <!--plugin-->
+  <script src="vendor/reveal/plugin/math/math.js"></script>
+  <script src="vendor/reveal/plugin/search/search.js"></script>
+  <script src="vendor/reveal/plugin/zoom/zoom.js"></script>
+
+  <script src="vendor/reveal/plugin/notes/notes.js"></script>
+  <script src="vendor/reveal/plugin/markdown/markdown.js"></script>
+  <script src="vendor/reveal/plugin/highlight/highlight.js"></script>
+  <script src="main-ppt.js"></script>
+</body>
+
+</html>
