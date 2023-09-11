@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=1900">
+  <title>o22-7 建構唯一二元樹</title>
+  <style>
+    html,
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+  </style>
+  <link rel="stylesheet" href="vendor/reveal/reset.css">
+  <link rel="stylesheet" href="vendor/reveal/reveal.css">
+  <link rel="stylesheet" href="vendor/reveal/theme/sky.css">
+
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="vendor/reveal/plugin/highlight/zenburn.css"><!--edit-->
+  <!-- Pollyfill script -->
+  <script src="https://unpkg.com/core-js-bundle@3.6.1/minified.js"></script>
+  <!-- Live2DCubismCore script -->
+  <script src="./dist/live2dcubismcore.js"></script>
+  <!-- Build script -->
+  <script src="./dist/bundle.js"></script>
+  <style>
+    ul, ol{
+      list-style: none;
+      margin-left: 0;
+    }
+    .reveal {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    #pageIndex{
+      position: absolute;
+      right: 24px;
+      bottom: 24px;
+      background: #000;
+      color: #fff;
+      font-size: 26px;
+    }
+    .controls{
+      bottom: 24px !important;
+    }
+    table{
+      font-size: 24px !important;
+      border-style: double !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <!--
+         data-no: 老師網頁的cubism人物編號(從0開始，網頁上的編號-1)
+         data-positionx: cubism人物水平位移範圍(建議-1 ~ 0.9)
+         data-positiony: cubism人物垂直位移範圍(建議-0.9~0.4)
+         data-scale: cubism人物縮放(建議1~2之間的小數值，最大極限是3)
+         data-motionno: cubism人物指定動作編號(從0開始，請參閱model3.json檔案的ALL MOTION GROUP)
+      -->
+
+      <!--Q1-->
+      <section>
+        <h3 style="text-align: left;">建構唯一二元樹(進階題)</h3>
+        <section data-auto-animate
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <p style="font-size: 24px; text-align: left;">
+            （使用以下 struct 與 Link List 實作才計分）
+          </p>
+          <pre><code data-trim data-noescape>
+            typedef struct node_s{
+                char data;
+                struct node_s *right, *left;
+            } tree_t;
+            typedef tree_t *btree;
+          </code></pre>
+
+           <p style="font-size: 24px; text-align: left;">
+          給定前序或後序以及中序，建構唯一的二元樹，節點資料為大寫英文字母。輸出樹的節點資料內容，順序為由上而下，由左而右印出（Level-order）。<br>
+            前序代號：P (Preorder)<br>
+            中序代號：I (Inorder)<br>
+            後序代號：O (Postorder)
+        </p>
+        </section>
+        <section data-auto-animate
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <p style="font-size: 24px; text-align: left; font-weight: bold;">
+            輸入說明</p>
+          <p style="font-size: 24px; text-align: left;">
+            Line 1, n 表示二元樹有 n 個節點。<br>
+            Line 2, 前、中、後序代號。<br>
+            Line 3, 上筆尋訪資料。<br>
+            Line 4, 前、中、後序代號。<br>
+            Line 5, 上筆尋訪資料。
+          </p>
+          <p style="font-size: 24px; text-align: left; font-weight: bold;">
+            輸出說明</p>
+          <p style="font-size: 24px; text-align: left;">
+            輸出唯一二元樹的 內容，由上而下， 由左而右。
+          </p>
+        </section>
+      </section>
+      <section>
+          <h3>Input/Output</h3>
+          <section data-auto-animate
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+            <img src="img/ch17/005.png">
+          </section>        
+          <section data-auto-animate
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+            <img src="img/ch17/006.png">
+          </section> 
+          <section data-auto-animate
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+            <img src="img/ch17/007.png">
+          </section>
+          <section data-auto-animate
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+            <img src="img/ch17/008.png">
+          </section>
+      </section>
+      <section>
+        <section data-auto-animate
+          data-no="17" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <h3>hints</h3>
+          <p style="font-size: 24px; text-align: left; font-weight: bold;">Keyword: 二元樹走訪</p>
+          <p style="font-size: 24px; text-align: left;">
+            前序(Preorder)：根節點、左子節點、右子節點<br>
+            中序(Inorder)：左子節點、根節點、右子節點<br>
+            後序(Postorder)：左子節點、右子節點、根節點<br>
+            層序(Level-order)：由根節點一層層往下，由左往右。
+          </p>
+        </section> 
+        <section data-auto-animate
+          data-no="17" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <h3>hints</h3>
+          <pre><code data-trim data-noescape>
+            #include &lt;stdio.h&gt;
+
+            int main(){
+              //讀入前/後序以及中序
+              //若為後序+中序，將後序左右反轉變成根節點、右子節點、左子節點，
+              //讓根節點在陣列的最左邊(前序+中序不需處理)
+              //依據前/後序的節點順序，再根據中序的相對位置，
+              //從根節點開始往左或往右加入新的節點
+              //最後由上而下、由左而右輸出唯一二元樹
+              return 0;
+            }
+          </code></pre>
+        </section>
+      </section>
+      <section>
+        <section data-auto-animate
+          data-no="8" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <h3>解答</h3>
+          <font size=5>標頭檔 && 結構定義</font>
+          <pre><code data-trim data-noescape data-line-numbers>
+            #include &lt;stdio.h>
+            #include &lt;stdlib.h>
+            
+            typedef struct node_s{ //題目指定struct
+              char data;
+              struct node_s *right,*left;
+            } tree_t;
+            
+            typedef tree_t *btree;
+          </code></pre>           
+        </section> 
+      </section>
+      <section>
+        <section data-auto-animate
+          data-no="8" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <h3>解答</h3>
+          <font size=5>副程式：產生新節點</font>
+          <pre><code data-trim data-noescape data-line-numbers>
+            btree newNode(char data){
+              btree new_node=malloc(sizeof(tree_t));
+              new_node->data = data;
+              new_node->right = NULL;
+              new_node->left = NULL;
+              return new_node;
+            }
+          </code></pre>           
+        </section> 
+      </section>
+      <section>
+        <section data-auto-animate
+          data-no="8" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <h3>解答</h3>
+          <font size=5>副程式：輸出二元樹</font>
+          <pre><code data-trim data-noescape data-line-numbers>
+            void output(btree root){
+              int count=1,c=0;
+              btree temp1[100],temp2[100];
+              temp1[0]=root;
+              while(count>0){ //該層尚有節點
+                for(int i=0; i&lt;count; i++){
+                  printf("%c",temp1[i]->data);
+                  if(temp1[i]->left!=NULL)
+                    temp2[c++]=temp1[i]->left;
+                  if(temp1[i]->right!=NULL)
+                    temp2[c++]=temp1[i]->right;
+                }
+                for(int i=0; i&lt;c; i++) 
+                  temp1[i]=temp2[i];	//將下一層的節點往上搬
+                count=c; //count為新搬上來這層節點數
+                c=0;
+              }
+            }
+          </code></pre>           
+        </section> 
+      </section>
+      <section>
+        <section data-auto-animate
+          data-no="8" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <h3>解答</h3>
+          <font size=5>主程式</font>
+          <pre><code data-trim data-noescape data-line-numbers="1-27|28-54|55-57">
+            int main(){
+              int n,x,y,index=0;
+              char c,input1[100],input2[100],s;
+              char aim;
+              btree root=NULL,temp;
+              scanf("%d\n",&n); //讀入節點總數 
+              scanf("%c\n",&s); //讀入前、中、後序
+              if(s=='P'|| s=='O'){ //前 or 後序
+                for(int i=0; i&lt;n; i++) scanf("%c",&input1[i]);
+                scanf("\n%c\n",&c);	//必為中序，吃掉輸入
+                for(int i=0; i&lt;n; i++) scanf("%c",&input2[i]); //中序
+                scanf("%c",&c); //吃掉換行
+              }
+              else{ //中序
+                for(int i=0; i&lt;n; i++) scanf("%c",&input2[i]);
+                scanf("\n%c\n",&s); //必為前/後序，讀入前or後
+                for(int i=0; i&lt;n; i++) scanf("%c",&input1[i]); //前/後序
+                scanf("%c",&c); //吃掉換行
+              }
+              if(s=='O'){ //後序(左、右、根節點)
+                //沿著中間左右反轉(變為根節點、右、左)
+                for(int i=0; i&lt;n/2; i++){ 
+                  c = input1[i];
+                  input1[i] = input1[n-i-1];
+                  input1[n-i-1] = c;
+                }
+              }
+              root=newNode(input1[0]); //input1[0]為root
+              while(index&lt;n-1){ 
+                index++; //index=0~n-1
+                temp = root; //temp初始為root
+                aim = input1[index]; //依序前/後序的順序
+                for(int i=0; i&lt;n; i++)
+                  if(input2[i]==aim) x=i; //在中序找到aim，標註該位置
+                while(1){ //無窮迴圈，直到新增一個node至正確位置
+                  for(int i=0; i&lt;n; i++)
+                    if(input2[i]==temp->data) y=i; //在中序找到temp，標註位置
+                    //比較aim跟temp的位置
+                  if(x>y){ //aim的位置在temp的右邊
+                    if(temp->right==NULL){
+                      temp->right=newNode(aim);
+                      break;
+                    }
+                    else temp=temp->right;
+                  }
+                  else{ //aim的位置在temp的左邊
+                    if(temp->left==NULL){
+                      temp->left=newNode(aim);
+                      break;
+                    }
+                    else temp=temp->left;
+                  }
+                }
+              }
+              output(root);
+              return 0;
+            }
+          </code></pre>           
+        </section> 
+      </section>
+
+    </div>
+  </div>
+  <div id="pageIndex"></div>
+  <!-- reveal.js-->
+  <script src="vendor/reveal/reveal.js"></script>
+  <!--plugin-->
+  <script src="vendor/reveal/plugin/math/math.js"></script>
+  <script src="vendor/reveal/plugin/search/search.js"></script>
+  <script src="vendor/reveal/plugin/zoom/zoom.js"></script>
+
+  <script src="vendor/reveal/plugin/notes/notes.js"></script>
+  <script src="vendor/reveal/plugin/markdown/markdown.js"></script>
+  <script src="vendor/reveal/plugin/highlight/highlight.js"></script>
+  <script src="main-ppt.js"></script>
+</body>
+
+</html>
