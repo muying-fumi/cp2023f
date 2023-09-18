@@ -327,7 +327,7 @@
 			//加、減需通分(利用最大公因數求最小公倍數)
 			//需考慮負號(負號跟著分子，例如：-3/4會被拆成分子-3分母4)
 			if (operator=='+' || operator=='-'){
-				//a,b的LCM=(a/GCD)*(b/GCD)*LCM=a*b/GCD；lcm也是通分後的分母d
+				//a,b的LCM=(a/GCD)*(b/GCD)*GCD=a*b/GCD；lcm也是通分後的分母d
 				d=a2*b2/getGCD(a2,b2);    
 				//舉例：2/3+3/4=(2*(12/3)+3*(12/4))/12
 				if (operator=='+')
